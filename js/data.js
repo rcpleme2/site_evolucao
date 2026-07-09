@@ -190,6 +190,15 @@
     return registro;
   }
 
+  function update(entidade, id, dados) {
+    const db = garantirDb();
+    const lista = db[entidade] || [];
+    const idx = lista.findIndex((item) => item.id === id);
+    if (idx === -1) return null;
+    lista[idx] = Object.assign({}, lista[idx], dados, { id });
+    return lista[idx];
+  }
+
   function remove(entidade, id) {
     const db = garantirDb();
     const lista = db[entidade] || [];
@@ -277,6 +286,7 @@
     getFiltrado,
     ordenarPor,
     create,
+    update,
     remove,
     resetParaPlaceholders,
     exportarJson,

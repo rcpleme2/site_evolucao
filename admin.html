@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gerenciar Cadastros — Sistema de Evolução</title>
-  <link rel="stylesheet" href="css/style.css?v=3" />
+  <link rel="stylesheet" href="css/style.css?v=4" />
 </head>
 <body>
   <header class="topo">
@@ -29,6 +29,7 @@
           <input type="text" id="novoMedicamentoNome" placeholder="Ex.: Ibuprofeno" />
         </div>
         <button type="button" class="primario" id="btnAddMedicamento">Adicionar</button>
+        <button type="button" class="secundario" id="btnCancelarMedicamento" style="display:none;">Cancelar</button>
       </div>
       <table class="tabela-admin">
         <thead><tr><th>Nome</th><th>Ações</th></tr></thead>
@@ -48,6 +49,7 @@
           <input type="text" id="novaDoseValor" placeholder="Ex.: 400mg" />
         </div>
         <button type="button" class="primario" id="btnAddDose">Adicionar</button>
+        <button type="button" class="secundario" id="btnCancelarDose" style="display:none;">Cancelar</button>
       </div>
       <table class="tabela-admin">
         <thead><tr><th>Medicamento</th><th>Dose</th><th>Ações</th></tr></thead>
@@ -64,6 +66,7 @@
           <input type="text" id="novaViaNome" placeholder="Ex.: IM, EV, SC, VO" />
         </div>
         <button type="button" class="primario" id="btnAddVia">Adicionar</button>
+        <button type="button" class="secundario" id="btnCancelarVia" style="display:none;">Cancelar</button>
       </div>
       <table class="tabela-admin">
         <thead><tr><th>Via</th><th>Ações</th></tr></thead>
@@ -84,6 +87,7 @@
           <select id="mvVia"></select>
         </div>
         <button type="button" class="primario" id="btnAddMedicamentoVia">Vincular</button>
+        <button type="button" class="secundario" id="btnCancelarMedicamentoVia" style="display:none;">Cancelar</button>
       </div>
       <table class="tabela-admin">
         <thead><tr><th>Medicamento</th><th>Via</th><th>Ações</th></tr></thead>
@@ -104,6 +108,7 @@
           <input type="text" id="novoLocalNome" placeholder="Ex.: Deltoide, Abdômen…" />
         </div>
         <button type="button" class="primario" id="btnAddLocal">Adicionar</button>
+        <button type="button" class="secundario" id="btnCancelarLocal" style="display:none;">Cancelar</button>
       </div>
       <table class="tabela-admin">
         <thead><tr><th>Via</th><th>Local</th><th>Ações</th></tr></thead>
@@ -124,6 +129,7 @@
           <input type="text" id="novaRegiaoNome" placeholder="Ex.: Direito, Esquerdo, 3h…" />
         </div>
         <button type="button" class="primario" id="btnAddRegiao">Adicionar</button>
+        <button type="button" class="secundario" id="btnCancelarRegiao" style="display:none;">Cancelar</button>
       </div>
       <table class="tabela-admin">
         <thead><tr><th>Local</th><th>Região/Lado</th><th>Ações</th></tr></thead>
@@ -139,6 +145,7 @@
           <input type="text" id="novoLaboratorioNome" placeholder="Ex.: Eurofarma" />
         </div>
         <button type="button" class="primario" id="btnAddLaboratorio">Adicionar</button>
+        <button type="button" class="secundario" id="btnCancelarLaboratorio" style="display:none;">Cancelar</button>
       </div>
       <table class="tabela-admin">
         <thead><tr><th>Laboratório</th><th>Ações</th></tr></thead>
@@ -158,6 +165,7 @@
           <input type="text" id="novoProfissionalRegistro" placeholder="Ex.: COREN 987654" />
         </div>
         <button type="button" class="primario" id="btnAddProfissional">Adicionar</button>
+        <button type="button" class="secundario" id="btnCancelarProfissional" style="display:none;">Cancelar</button>
       </div>
       <table class="tabela-admin">
         <thead><tr><th>Nome</th><th>Registro</th><th>Ações</th></tr></thead>
@@ -214,7 +222,7 @@
     </section>
   </main>
 
-  <script src="js/data.js?v=3"></script>
-  <script src="js/admin.js?v=3"></script>
+  <script src="js/data.js?v=4"></script>
+  <script src="js/admin.js?v=4"></script>
 </body>
 </html>

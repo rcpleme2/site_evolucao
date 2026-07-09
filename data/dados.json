@@ -192,6 +192,11 @@
       "id": "id_mrdri1uv_xm56sk",
       "medicamentoId": "id_mrdlil8f_8hkdgl",
       "valor": "Plus (L-Metionina 25mg + L-Taurina 50mg + L-Prolina 10mg + Biotina 10mg + Vit. B2 5mg + Vit. B3 10mg + Vit. B6 10mg + D- Pante-nol 10mg + Silício 60mcg + Zinco 1mg + Selênio 10mcg) / 2 mL"
+    },
+    {
+      "id": "id_mrdsxl7f_l8nfzm",
+      "medicamentoId": "id_mrdlg093_yy5riz",
+      "valor": "2500 mcg / 1 mL + Vitamina B9 (Metilfolato) 2,5 mg / 2mL"
     }
   ],
   "vias": [

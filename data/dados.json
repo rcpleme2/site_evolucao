@@ -66,10 +66,6 @@
     {
       "id": "id_mrdhiixb_c4v9qg",
       "nome": "SC"
-    },
-    {
-      "id": "id_mrdhiixb_vjssrw",
-      "nome": "VO"
     }
   ],
   "locais": [
@@ -112,11 +108,6 @@
       "id": "id_mrdhiixb_i7aifh",
       "viaId": "id_mrdhiixb_093u3q",
       "nome": "Membro Superior"
-    },
-    {
-      "id": "id_mrdhiixb_m9t9ly",
-      "viaId": "id_mrdhiixb_vjssrw",
-      "nome": "Via Oral"
     }
   ],
   "regioes": [
@@ -209,11 +200,6 @@
       "id": "id_mrdhiixb_9j2p1y",
       "localId": "id_mrdhiixb_i7aifh",
       "nome": "Esquerdo"
-    },
-    {
-      "id": "id_mrdhiixb_cns9po",
-      "localId": "id_mrdhiixb_m9t9ly",
-      "nome": "Não aplicável"
     }
   ],
   "laboratorios": [

@@ -5,7 +5,9 @@
  */
 (function () {
   const db = window.PrescricaoDB;
-  db.seedIfEmpty();
+
+  const avisoCarregamento = document.getElementById('avisoCarregamento');
+  const avisoInstrucao = document.getElementById('avisoInstrucao');
 
   const tabelaMedicamentos = document.getElementById('tabelaMedicamentos');
   const tabelaDoses = document.getElementById('tabelaDoses');
@@ -325,5 +327,63 @@
     renderizarTudo();
   });
 
-  renderizarTudo();
+  const TOKEN_SESSION_KEY = 'prescricao_admin_gh_token';
+  const campoOwner = document.getElementById('pubOwner');
+  const campoRepo = document.getElementById('pubRepo');
+  const campoBranch = document.getElementById('pubBranch');
+  const campoPath = document.getElementById('pubPath');
+  const campoToken = document.getElementById('pubToken');
+  const statusPublicacao = document.getElementById('statusPublicacao');
+
+  const tokenSalvo = sessionStorage.getItem(TOKEN_SESSION_KEY);
+  if (tokenSalvo) campoToken.value = tokenSalvo;
+  campoToken.addEventListener('input', () => {
+    sessionStorage.setItem(TOKEN_SESSION_KEY, campoToken.value);
+  });
+
+  function mostrarStatusPublicacao(mensagem, classe) {
+    statusPublicacao.textContent = mensagem;
+    statusPublicacao.className = `aviso ${classe}`;
+    statusPublicacao.style.display = '';
+  }
+
+  document.getElementById('btnPublicar').addEventListener('click', async () => {
+    const botao = document.getElementById('btnPublicar');
+    botao.disabled = true;
+    mostrarStatusPublicacao('Publicando…', 'aviso');
+    try {
+      await db.publicarNoGithub({
+        owner: campoOwner.value.trim(),
+        repo: campoRepo.value.trim(),
+        branch: campoBranch.value.trim(),
+        path: campoPath.value.trim(),
+        token: campoToken.value.trim(),
+        mensagemCommit: 'Atualiza cadastros da evolução de enfermagem via painel admin'
+      });
+      mostrarStatusPublicacao(
+        'Publicado com sucesso! O GitHub Pages leva cerca de 1 minuto para atualizar o site para todos.',
+        'sucesso'
+      );
+    } catch (e) {
+      mostrarStatusPublicacao(e.message || 'Falha ao publicar.', 'erro');
+    } finally {
+      botao.disabled = false;
+    }
+  });
+
+  document.getElementById('btnRecarregarPublicado').addEventListener('click', async () => {
+    if (!confirm('Isso descarta as alterações não publicadas nesta tela. Confirma?')) return;
+    await db.carregarDb();
+    statusPublicacao.style.display = 'none';
+    renderizarTudo();
+  });
+
+  async function iniciar() {
+    await db.carregarDb();
+    avisoCarregamento.style.display = 'none';
+    avisoInstrucao.style.display = '';
+    renderizarTudo();
+  }
+
+  iniciar();
 })();

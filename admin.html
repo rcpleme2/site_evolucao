@@ -13,7 +13,8 @@
   </header>
 
   <main>
-    <div class="aviso">
+    <div class="aviso" id="avisoCarregamento">Carregando dados…</div>
+    <div class="aviso" id="avisoInstrucao" style="display:none;">
       Cadastre medicamentos e, em seguida, vincule doses e vias de administração a cada medicamento, locais de
       aplicação a cada via, e regiões/lados a cada local. Laboratórios e profissionais são listas gerais,
       independentes do medicamento.
@@ -150,10 +151,50 @@
 
     <section class="card">
       <h2>Restaurar Dados</h2>
-      <p class="ajuda">Restaura os cadastros para os valores placeholder originais, apagando as alterações feitas.</p>
+      <p class="ajuda">Restaura os cadastros (nesta tela, ainda não publicado) para os valores placeholder originais.</p>
       <div class="botoes">
         <button type="button" class="perigo" id="btnResetar">Restaurar Placeholders</button>
       </div>
+    </section>
+
+    <section class="card">
+      <h2>Publicar Alterações</h2>
+      <p class="ajuda">
+        As alterações feitas nesta tela ficam só neste navegador até serem publicadas. Publicar grava o arquivo
+        <code>data/dados.json</code> diretamente no repositório do GitHub, para que todos os computadores passem
+        a ver os novos cadastros assim que o GitHub Pages reconstruir o site (leva cerca de 1 minuto).
+      </p>
+      <div class="linha-form">
+        <div class="campo">
+          <label for="pubOwner">Usuário/Organização</label>
+          <input type="text" id="pubOwner" value="rcpleme2" />
+        </div>
+        <div class="campo">
+          <label for="pubRepo">Repositório</label>
+          <input type="text" id="pubRepo" value="site_prescricao" />
+        </div>
+        <div class="campo">
+          <label for="pubBranch">Branch</label>
+          <input type="text" id="pubBranch" value="main" />
+        </div>
+        <div class="campo">
+          <label for="pubPath">Caminho do arquivo</label>
+          <input type="text" id="pubPath" value="data/dados.json" />
+        </div>
+      </div>
+      <div class="campo">
+        <label for="pubToken">Personal Access Token do GitHub</label>
+        <input type="password" id="pubToken" placeholder="Cole aqui o token (fine-grained, permissão Contents: Read and write)" />
+        <p class="ajuda">
+          O token fica só na memória desta aba (sessionStorage) enquanto ela estiver aberta — nunca é salvo em
+          arquivo, nem enviado para qualquer lugar além da API do GitHub.
+        </p>
+      </div>
+      <div class="botoes">
+        <button type="button" class="primario" id="btnPublicar">Publicar no GitHub</button>
+        <button type="button" class="secundario" id="btnRecarregarPublicado">Recarregar Dados Publicados</button>
+      </div>
+      <div class="aviso" id="statusPublicacao" style="display:none;"></div>
     </section>
   </main>
 

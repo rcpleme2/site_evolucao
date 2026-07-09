@@ -1,0 +1,270 @@
+{
+  "medicamentos": [
+    {
+      "id": "id_mrdhiixb_nk6h3v",
+      "nome": "Dipirona Sódica"
+    },
+    {
+      "id": "id_mrdhiixb_5pjetd",
+      "nome": "Paracetamol"
+    },
+    {
+      "id": "id_mrdhiixb_dpy6t1",
+      "nome": "Soro Fisiológico 0,9%"
+    }
+  ],
+  "doses": [
+    {
+      "id": "id_mrdhiixb_injnxr",
+      "medicamentoId": "id_mrdhiixb_nk6h3v",
+      "valor": "500mg"
+    },
+    {
+      "id": "id_mrdhiixb_hohli4",
+      "medicamentoId": "id_mrdhiixb_nk6h3v",
+      "valor": "1g"
+    },
+    {
+      "id": "id_mrdhiixb_8qis3m",
+      "medicamentoId": "id_mrdhiixb_5pjetd",
+      "valor": "500mg"
+    },
+    {
+      "id": "id_mrdhiixb_4k08m0",
+      "medicamentoId": "id_mrdhiixb_5pjetd",
+      "valor": "750mg"
+    },
+    {
+      "id": "id_mrdhiixb_mdsp5o",
+      "medicamentoId": "id_mrdhiixb_dpy6t1",
+      "valor": "100ml"
+    },
+    {
+      "id": "id_mrdhiixb_wdps12",
+      "medicamentoId": "id_mrdhiixb_dpy6t1",
+      "valor": "500ml"
+    }
+  ],
+  "vias": [
+    {
+      "id": "id_mrdhiixb_l5kedm",
+      "medicamentoId": "id_mrdhiixb_nk6h3v",
+      "nome": "IM"
+    },
+    {
+      "id": "id_mrdhiixb_093u3q",
+      "medicamentoId": "id_mrdhiixb_nk6h3v",
+      "nome": "EV"
+    },
+    {
+      "id": "id_mrdhiixb_c4v9qg",
+      "medicamentoId": "id_mrdhiixb_nk6h3v",
+      "nome": "SC"
+    },
+    {
+      "id": "id_mrdhiixb_vjssrw",
+      "medicamentoId": "id_mrdhiixb_5pjetd",
+      "nome": "VO"
+    },
+    {
+      "id": "id_mrdhiixb_wlh4yt",
+      "medicamentoId": "id_mrdhiixb_dpy6t1",
+      "nome": "EV"
+    }
+  ],
+  "locais": [
+    {
+      "id": "id_mrdhiixb_jomqc3",
+      "medicamentoId": "id_mrdhiixb_nk6h3v",
+      "viaId": "id_mrdhiixb_l5kedm",
+      "nome": "Deltoide"
+    },
+    {
+      "id": "id_mrdhiixb_rfxxu9",
+      "medicamentoId": "id_mrdhiixb_nk6h3v",
+      "viaId": "id_mrdhiixb_l5kedm",
+      "nome": "Ventroglúteo"
+    },
+    {
+      "id": "id_mrdhiixb_o23kza",
+      "medicamentoId": "id_mrdhiixb_nk6h3v",
+      "viaId": "id_mrdhiixb_l5kedm",
+      "nome": "Dorsoglúteo"
+    },
+    {
+      "id": "id_mrdhiixb_mz2gwp",
+      "medicamentoId": "id_mrdhiixb_nk6h3v",
+      "viaId": "id_mrdhiixb_l5kedm",
+      "nome": "Vasto Lateral da Coxa"
+    },
+    {
+      "id": "id_mrdhiixb_4ruofm",
+      "medicamentoId": "id_mrdhiixb_nk6h3v",
+      "viaId": "id_mrdhiixb_c4v9qg",
+      "nome": "Abdômen"
+    },
+    {
+      "id": "id_mrdhiixb_hzv0lf",
+      "medicamentoId": "id_mrdhiixb_nk6h3v",
+      "viaId": "id_mrdhiixb_c4v9qg",
+      "nome": "Face Externa do Braço"
+    },
+    {
+      "id": "id_mrdhiixb_5cbceq",
+      "medicamentoId": "id_mrdhiixb_nk6h3v",
+      "viaId": "id_mrdhiixb_c4v9qg",
+      "nome": "Face Externa da Coxa"
+    },
+    {
+      "id": "id_mrdhiixb_i7aifh",
+      "medicamentoId": "id_mrdhiixb_nk6h3v",
+      "viaId": "id_mrdhiixb_093u3q",
+      "nome": "Membro Superior"
+    },
+    {
+      "id": "id_mrdhiixb_m9t9ly",
+      "medicamentoId": "id_mrdhiixb_5pjetd",
+      "viaId": "id_mrdhiixb_vjssrw",
+      "nome": "Via Oral"
+    },
+    {
+      "id": "id_mrdhiixb_zgebm6",
+      "medicamentoId": "id_mrdhiixb_dpy6t1",
+      "viaId": "id_mrdhiixb_wlh4yt",
+      "nome": "Membro Superior"
+    }
+  ],
+  "regioes": [
+    {
+      "id": "id_mrdhiixb_imp5kr",
+      "localId": "id_mrdhiixb_jomqc3",
+      "nome": "Direito"
+    },
+    {
+      "id": "id_mrdhiixb_ueosol",
+      "localId": "id_mrdhiixb_jomqc3",
+      "nome": "Esquerdo"
+    },
+    {
+      "id": "id_mrdhiixb_dh86h1",
+      "localId": "id_mrdhiixb_rfxxu9",
+      "nome": "Direito"
+    },
+    {
+      "id": "id_mrdhiixb_2egfak",
+      "localId": "id_mrdhiixb_rfxxu9",
+      "nome": "Esquerdo"
+    },
+    {
+      "id": "id_mrdhiixb_1jh658",
+      "localId": "id_mrdhiixb_o23kza",
+      "nome": "Direito"
+    },
+    {
+      "id": "id_mrdhiixb_o3g7ij",
+      "localId": "id_mrdhiixb_o23kza",
+      "nome": "Esquerdo"
+    },
+    {
+      "id": "id_mrdhiixb_d95whf",
+      "localId": "id_mrdhiixb_mz2gwp",
+      "nome": "Direito"
+    },
+    {
+      "id": "id_mrdhiixb_eciibg",
+      "localId": "id_mrdhiixb_mz2gwp",
+      "nome": "Esquerdo"
+    },
+    {
+      "id": "id_mrdhiixb_b9pp4h",
+      "localId": "id_mrdhiixb_4ruofm",
+      "nome": "3h"
+    },
+    {
+      "id": "id_mrdhiixb_52grj2",
+      "localId": "id_mrdhiixb_4ruofm",
+      "nome": "6h"
+    },
+    {
+      "id": "id_mrdhiixb_onngod",
+      "localId": "id_mrdhiixb_4ruofm",
+      "nome": "9h"
+    },
+    {
+      "id": "id_mrdhiixb_bdqqpc",
+      "localId": "id_mrdhiixb_4ruofm",
+      "nome": "12h"
+    },
+    {
+      "id": "id_mrdhiixb_3vtrke",
+      "localId": "id_mrdhiixb_hzv0lf",
+      "nome": "Direito"
+    },
+    {
+      "id": "id_mrdhiixb_o1acla",
+      "localId": "id_mrdhiixb_hzv0lf",
+      "nome": "Esquerdo"
+    },
+    {
+      "id": "id_mrdhiixb_sl6cve",
+      "localId": "id_mrdhiixb_5cbceq",
+      "nome": "Direito"
+    },
+    {
+      "id": "id_mrdhiixb_sfy0v3",
+      "localId": "id_mrdhiixb_5cbceq",
+      "nome": "Esquerdo"
+    },
+    {
+      "id": "id_mrdhiixb_c2kbvq",
+      "localId": "id_mrdhiixb_i7aifh",
+      "nome": "Direito"
+    },
+    {
+      "id": "id_mrdhiixb_9j2p1y",
+      "localId": "id_mrdhiixb_i7aifh",
+      "nome": "Esquerdo"
+    },
+    {
+      "id": "id_mrdhiixb_8vzx6j",
+      "localId": "id_mrdhiixb_zgebm6",
+      "nome": "Direito"
+    },
+    {
+      "id": "id_mrdhiixb_09cq64",
+      "localId": "id_mrdhiixb_zgebm6",
+      "nome": "Esquerdo"
+    },
+    {
+      "id": "id_mrdhiixb_cns9po",
+      "localId": "id_mrdhiixb_m9t9ly",
+      "nome": "Não aplicável"
+    }
+  ],
+  "laboratorios": [
+    {
+      "id": "id_mrdhiixb_iw9d4m",
+      "nome": "Essentia Pharma"
+    },
+    {
+      "id": "id_mrdhiixb_xw4bx4",
+      "nome": "Biomeds"
+    },
+    {
+      "id": "id_mrdhiixb_a2pgf1",
+      "nome": "Health Tech"
+    }
+  ],
+  "profissionais": [
+    {
+      "id": "id_mrdhiixb_9ejg2u",
+      "nome": "Tarcila Disner - Técnica em Enfermagem",
+      "registro": "COREN 1221186"
+    },
+    {
+      "id": "id_mrdhiixb_dec9yd",
+      "nome": "Eliane Carvalho - Técnica em Enfermagem",
+      "registro": "COREN 1190230"
+    }
+  ]
+}

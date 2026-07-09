@@ -251,6 +251,18 @@ table.tabela-admin td.acoes {
   margin-bottom: 1rem;
 }
 
+.aviso.erro {
+  background: #fbecec;
+  border-color: #eec4c7;
+  color: var(--perigo);
+}
+
+.aviso.sucesso {
+  background: #eaf6f0;
+  border-color: #bfe3d0;
+  color: var(--sucesso);
+}
+
 .rodape-nota {
   font-size: 0.78rem;
   color: #6b7a89;

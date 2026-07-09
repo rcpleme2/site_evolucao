@@ -13,7 +13,8 @@
   </header>
 
   <main>
-    <div class="aviso">
+    <div class="aviso" id="avisoCarregamento">Carregando dados…</div>
+    <div class="aviso" id="avisoInstrucao" style="display:none;">
       Preencha os campos em ordem. Cada escolha define as opções disponíveis no campo seguinte.
     </div>
 
@@ -22,8 +23,8 @@
 
       <div class="campo">
         <label for="medicamento">1. Medicamento</label>
-        <select id="medicamento">
-          <option value="">Selecione o medicamento…</option>
+        <select id="medicamento" disabled>
+          <option value="">Carregando…</option>
         </select>
       </div>
 

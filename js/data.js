@@ -1,11 +1,15 @@
 /**
- * Camada de dados do sistema de prescrições.
- * Persiste tudo em localStorage e expõe funções genéricas de CRUD,
- * para que novas entidades e vínculos possam ser adicionados no futuro
- * sem alterar a lógica das telas.
+ * Camada de dados do sistema de evolução de enfermagem.
+ * Os cadastros vivem em um arquivo estático versionado (data/dados.json),
+ * compartilhado por todos os usuários do site. A tela de administração
+ * edita uma cópia em memória e publica de volta no GitHub via Contents API,
+ * para que a mudança apareça para todo mundo depois do rebuild do Pages.
  */
 (function (global) {
-  const STORAGE_KEY = 'prescricao_db_v3';
+  const CAMINHO_DADOS = 'data/dados.json';
+
+  let dbAtual = null;
+  let ultimaFonte = null; // 'remoto' | 'embutido'
 
   function uid() {
     return 'id_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 8);
@@ -113,37 +117,38 @@
     };
   }
 
-  function load() {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return null;
+  /**
+   * Carrega os dados compartilhados do arquivo estático (data/dados.json).
+   * Em caso de falha (offline, JSON corrompido, etc.), cai para os
+   * placeholders embutidos, para o site continuar funcionando.
+   */
+  async function carregarDb() {
     try {
-      return JSON.parse(raw);
+      const resposta = await fetch(`${CAMINHO_DADOS}?t=${Date.now()}`, { cache: 'no-store' });
+      if (!resposta.ok) throw new Error(`HTTP ${resposta.status}`);
+      dbAtual = await resposta.json();
+      ultimaFonte = 'remoto';
     } catch (e) {
-      console.error('Falha ao ler dados salvos, reiniciando com placeholders.', e);
-      return null;
+      console.error('Falha ao carregar data/dados.json, usando placeholders embutidos.', e);
+      dbAtual = seedData();
+      ultimaFonte = 'embutido';
     }
+    return dbAtual;
   }
 
-  function save(db) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(db));
+  function obterFonteDados() {
+    return ultimaFonte;
   }
 
-  function seedIfEmpty() {
-    let db = load();
-    if (!db) {
-      db = seedData();
-      save(db);
+  function garantirDb() {
+    if (!dbAtual) {
+      throw new Error('Dados ainda não carregados — chame carregarDb() antes de usar PrescricaoDB.');
     }
-    return db;
-  }
-
-  function getDb() {
-    return load() || seedIfEmpty();
+    return dbAtual;
   }
 
   function getAll(entidade) {
-    const db = getDb();
-    return db[entidade] || [];
+    return garantirDb()[entidade] || [];
   }
 
   function getById(entidade, id) {
@@ -162,45 +167,112 @@
   }
 
   function create(entidade, dados) {
-    const db = getDb();
+    const db = garantirDb();
     if (!db[entidade]) db[entidade] = [];
     const registro = Object.assign({ id: uid() }, dados);
     db[entidade].push(registro);
-    save(db);
     return registro;
   }
 
   function update(entidade, id, dados) {
-    const db = getDb();
+    const db = garantirDb();
     const lista = db[entidade] || [];
     const idx = lista.findIndex((item) => item.id === id);
     if (idx === -1) return null;
     lista[idx] = Object.assign({}, lista[idx], dados, { id });
-    save(db);
     return lista[idx];
   }
 
   function remove(entidade, id) {
-    const db = getDb();
+    const db = garantirDb();
     const lista = db[entidade] || [];
     db[entidade] = lista.filter((item) => item.id !== id);
-    save(db);
   }
 
   function resetParaPlaceholders() {
-    const db = seedData();
-    save(db);
-    return db;
+    dbAtual = seedData();
+    return dbAtual;
+  }
+
+  function exportarJson() {
+    return JSON.stringify(garantirDb(), null, 2) + '\n';
+  }
+
+  function base64Utf8(texto) {
+    const bytes = new TextEncoder().encode(texto);
+    let binario = '';
+    bytes.forEach((b) => (binario += String.fromCharCode(b)));
+    return btoa(binario);
+  }
+
+  /**
+   * Publica o estado atual em memória de volta no GitHub, via Contents API,
+   * sobrescrevendo data/dados.json na branch informada. Requer um Personal
+   * Access Token com permissão de escrita no repositório (o token nunca é
+   * armazenado por esta função — é responsabilidade de quem chama).
+   */
+  async function publicarNoGithub({ owner, repo, branch, path, token, mensagemCommit }) {
+    if (!owner || !repo || !branch || !path || !token) {
+      throw new Error('Preencha owner, repo, branch, path e token antes de publicar.');
+    }
+
+    const endpoint = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
+    const cabecalhos = {
+      Authorization: `Bearer ${token}`,
+      Accept: 'application/vnd.github+json'
+    };
+
+    const respostaAtual = await fetch(`${endpoint}?ref=${encodeURIComponent(branch)}`, {
+      headers: cabecalhos
+    });
+
+    if (!respostaAtual.ok && respostaAtual.status !== 404) {
+      throw new Error(
+        interpretarErroGithub(respostaAtual.status, 'ao consultar o arquivo atual no GitHub')
+      );
+    }
+
+    const shaAtual = respostaAtual.ok ? (await respostaAtual.json()).sha : undefined;
+
+    const corpo = {
+      message: mensagemCommit || 'Atualiza cadastros da evolução de enfermagem',
+      content: base64Utf8(exportarJson()),
+      branch
+    };
+    if (shaAtual) corpo.sha = shaAtual;
+
+    const respostaPut = await fetch(endpoint, {
+      method: 'PUT',
+      headers: Object.assign({ 'Content-Type': 'application/json' }, cabecalhos),
+      body: JSON.stringify(corpo)
+    });
+
+    if (!respostaPut.ok) {
+      throw new Error(interpretarErroGithub(respostaPut.status, 'ao publicar o arquivo no GitHub'));
+    }
+
+    return respostaPut.json();
+  }
+
+  function interpretarErroGithub(status, contexto) {
+    if (status === 401) return `Token inválido ou expirado (${contexto}).`;
+    if (status === 403) return `Token sem permissão suficiente neste repositório (${contexto}).`;
+    if (status === 409) return `O arquivo mudou desde o último carregamento — clique em "Recarregar dados publicados" e tente de novo (${contexto}).`;
+    if (status === 404) return `Repositório, branch ou caminho não encontrados (${contexto}).`;
+    return `Erro HTTP ${status} ${contexto}.`;
   }
 
   global.PrescricaoDB = {
-    seedIfEmpty,
+    carregarDb,
+    obterFonteDados,
     getAll,
     getById,
     getFiltrado,
     create,
     update,
     remove,
-    resetParaPlaceholders
+    resetParaPlaceholders,
+    exportarJson,
+    publicarNoGithub
   };
 })(window);

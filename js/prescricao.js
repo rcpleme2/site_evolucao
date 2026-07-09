@@ -6,7 +6,9 @@
  */
 (function () {
   const db = window.PrescricaoDB;
-  db.seedIfEmpty();
+
+  const avisoCarregamento = document.getElementById('avisoCarregamento');
+  const avisoInstrucao = document.getElementById('avisoInstrucao');
 
   const selMedicamento = document.getElementById('medicamento');
   const selDose = document.getElementById('dose');
@@ -347,7 +349,21 @@
   resetarSelect(selRegiao, 'Selecione o local primeiro…');
   resetarSelect(selLaboratorio, 'Selecione a região/lado primeiro…');
   resetarSelect(selProfissional, 'Selecione o laboratório primeiro…');
-  carregarMedicamentos();
   renderizarItens();
   renderizarTextoFinal();
+
+  async function iniciar() {
+    await db.carregarDb();
+    if (db.obterFonteDados() === 'embutido') {
+      avisoCarregamento.textContent =
+        'Não foi possível carregar os dados publicados; usando valores padrão locais. Recarregue a página para tentar de novo.';
+      avisoCarregamento.className = 'aviso erro';
+    } else {
+      avisoCarregamento.style.display = 'none';
+      avisoInstrucao.style.display = '';
+    }
+    carregarMedicamentos();
+  }
+
+  iniciar();
 })();

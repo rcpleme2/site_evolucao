@@ -1,43 +1,35 @@
 {
   "medicamentos": [
     {
-      "id": "id_mrdhiixb_nk6h3v",
-      "nome": "Dipirona Sódica"
-    },
-    {
-      "id": "id_mrdhiixb_5pjetd",
-      "nome": "Paracetamol"
-    },
-    {
       "id": "id_mrdhiixb_dpy6t1",
       "nome": "Soro Fisiológico 0,9%"
     },
     {
       "id": "id_mrdj4edb_d1jgff",
       "nome": "Vitamina D3 (Colecalciferol)"
+    },
+    {
+      "id": "id_mrdlg093_yy5riz",
+      "nome": "Vitamina B12 (Metilcobalamina)"
+    },
+    {
+      "id": "id_mrdlhflq_vtanh4",
+      "nome": "ADEK - (Vitamina A (palmitato retinol) 50.000UI > Vitamina D3 (colecalciferol) 600.000UI > Vitamina E (acetato DL-alfa tocoferol) 400UI > Vitamina K2 MK7 (menaquinona-7)1.300mcg)"
+    },
+    {
+      "id": "id_mrdlil8f_8hkdgl",
+      "nome": "Pill Food"
+    },
+    {
+      "id": "id_mrdljg86_339m1r",
+      "nome": "NAC - (N-Acetil Cisteína)"
+    },
+    {
+      "id": "id_mrdlkf2c_djlirs",
+      "nome": "Vitamina B9 (Metilfolato)"
     }
   ],
   "doses": [
-    {
-      "id": "id_mrdhiixb_injnxr",
-      "medicamentoId": "id_mrdhiixb_nk6h3v",
-      "valor": "500mg"
-    },
-    {
-      "id": "id_mrdhiixb_hohli4",
-      "medicamentoId": "id_mrdhiixb_nk6h3v",
-      "valor": "1g"
-    },
-    {
-      "id": "id_mrdhiixb_8qis3m",
-      "medicamentoId": "id_mrdhiixb_5pjetd",
-      "valor": "500mg"
-    },
-    {
-      "id": "id_mrdhiixb_4k08m0",
-      "medicamentoId": "id_mrdhiixb_5pjetd",
-      "valor": "750mg"
-    },
     {
       "id": "id_mrdhiixb_mdsp5o",
       "medicamentoId": "id_mrdhiixb_dpy6t1",
@@ -52,6 +44,31 @@
       "id": "id_mrdj4ikp_zagdv3",
       "medicamentoId": "id_mrdj4edb_d1jgff",
       "valor": "600.000 UI"
+    },
+    {
+      "id": "id_mrdlgkjq_l6liy1",
+      "medicamentoId": "id_mrdlg093_yy5riz",
+      "valor": "2500 mcg"
+    },
+    {
+      "id": "id_mrdlhmzz_4pnwt3",
+      "medicamentoId": "id_mrdlhflq_vtanh4",
+      "valor": "600.000 UI"
+    },
+    {
+      "id": "id_mrdlinrm_9imzop",
+      "medicamentoId": "id_mrdlil8f_8hkdgl",
+      "valor": "(L-Metionina 25mg + L-Taurina 50mg + L-Prolina 10mg + Biotina 10mg + Vit B2 5mg + Vit B3 10mg + Vit B6 10mg + D-Pantenol 10mg)"
+    },
+    {
+      "id": "id_mrdljm8u_165f1l",
+      "medicamentoId": "id_mrdljg86_339m1r",
+      "valor": "300 mg"
+    },
+    {
+      "id": "id_mrdlkx9b_k17o5s",
+      "medicamentoId": "id_mrdlkf2c_djlirs",
+      "valor": "2,5 mg/ 2mL"
     }
   ],
   "vias": [
@@ -230,26 +247,6 @@
   ],
   "medicamentoVias": [
     {
-      "id": "mv_id_mrdhiixb_l5kedm",
-      "medicamentoId": "id_mrdhiixb_nk6h3v",
-      "viaId": "id_mrdhiixb_l5kedm"
-    },
-    {
-      "id": "mv_id_mrdhiixb_093u3q",
-      "medicamentoId": "id_mrdhiixb_nk6h3v",
-      "viaId": "id_mrdhiixb_093u3q"
-    },
-    {
-      "id": "mv_id_mrdhiixb_c4v9qg",
-      "medicamentoId": "id_mrdhiixb_nk6h3v",
-      "viaId": "id_mrdhiixb_c4v9qg"
-    },
-    {
-      "id": "mv_id_mrdhiixb_vjssrw",
-      "medicamentoId": "id_mrdhiixb_5pjetd",
-      "viaId": "id_mrdhiixb_vjssrw"
-    },
-    {
       "id": "mv_id_mrdhiixb_wlh4yt",
       "medicamentoId": "id_mrdhiixb_dpy6t1",
       "viaId": "id_mrdhiixb_093u3q"
@@ -257,6 +254,36 @@
     {
       "id": "mv_id_mrdj4m4i_wqmgk3",
       "medicamentoId": "id_mrdj4edb_d1jgff",
+      "viaId": "id_mrdhiixb_l5kedm"
+    },
+    {
+      "id": "id_mrdlgo5c_agd1df",
+      "medicamentoId": "id_mrdlg093_yy5riz",
+      "viaId": "id_mrdhiixb_l5kedm"
+    },
+    {
+      "id": "id_mrdlgqh1_clcl4g",
+      "medicamentoId": "id_mrdlg093_yy5riz",
+      "viaId": "id_mrdhiixb_093u3q"
+    },
+    {
+      "id": "id_mrdlht0w_ejmv6s",
+      "medicamentoId": "id_mrdlhflq_vtanh4",
+      "viaId": "id_mrdhiixb_l5kedm"
+    },
+    {
+      "id": "id_mrdljsxl_pulfus",
+      "medicamentoId": "id_mrdljg86_339m1r",
+      "viaId": "id_mrdhiixb_093u3q"
+    },
+    {
+      "id": "id_mrdljugo_yjquhp",
+      "medicamentoId": "id_mrdljg86_339m1r",
+      "viaId": "id_mrdhiixb_l5kedm"
+    },
+    {
+      "id": "id_mrdll1f0_9htk36",
+      "medicamentoId": "id_mrdlkf2c_djlirs",
       "viaId": "id_mrdhiixb_l5kedm"
     }
   ]

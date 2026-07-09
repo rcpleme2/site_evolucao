@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gerenciar Cadastros — Sistema de Evolução</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/style.css?v=2" />
 </head>
 <body>
   <header class="topo">
@@ -74,11 +74,11 @@
     </section>
 
     <section class="card">
-      <h2>Locais de Aplicação (vinculados apenas à via de administração)</h2>
-      <p class="ajuda">O local não depende do medicamento — qualquer medicamento que use a mesma via (ex.: IM) compartilha os mesmos locais.</p>
+      <h2>Locais de Aplicação (vinculados apenas à via)</h2>
+      <p class="ajuda">O local depende só da via escolhida abaixo — não fica associado ao medicamento diretamente. A via já pertence a um medicamento específico (escolhido quando ela foi cadastrada), então o texto "Medicamento — Via" no select abaixo é só para ajudar a identificar qual via é qual.</p>
       <div class="linha-form">
         <div class="campo">
-          <label for="localVia">Via (medicamento — via)</label>
+          <label for="localVia">Via de administração</label>
           <select id="localVia"></select>
         </div>
         <div class="campo">
@@ -94,10 +94,11 @@
     </section>
 
     <section class="card">
-      <h2>Região/Lado (vinculada a um local)</h2>
+      <h2>Região/Lado (vinculada apenas ao local)</h2>
+      <p class="ajuda">A região/lado depende só do local escolhido abaixo — não fica associada à via nem ao medicamento diretamente.</p>
       <div class="linha-form">
         <div class="campo">
-          <label for="regiaoLocal">Local (via — local)</label>
+          <label for="regiaoLocal">Local de aplicação</label>
           <select id="regiaoLocal"></select>
         </div>
         <div class="campo">
@@ -195,7 +196,7 @@
     </section>
   </main>
 
-  <script src="js/data.js"></script>
-  <script src="js/admin.js"></script>
+  <script src="js/data.js?v=2"></script>
+  <script src="js/admin.js?v=2"></script>
 </body>
 </html>

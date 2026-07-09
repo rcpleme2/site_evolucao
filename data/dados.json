@@ -11,6 +11,10 @@
     {
       "id": "id_mrdhiixb_dpy6t1",
       "nome": "Soro Fisiológico 0,9%"
+    },
+    {
+      "id": "id_mrdj4edb_d1jgff",
+      "nome": "Vitamina D3 (Colecalciferol)"
     }
   ],
   "doses": [
@@ -43,6 +47,11 @@
       "id": "id_mrdhiixb_wdps12",
       "medicamentoId": "id_mrdhiixb_dpy6t1",
       "valor": "500ml"
+    },
+    {
+      "id": "id_mrdj4ikp_zagdv3",
+      "medicamentoId": "id_mrdj4edb_d1jgff",
+      "valor": "600.000 UI"
     }
   ],
   "vias": [
@@ -70,6 +79,11 @@
       "id": "id_mrdhiixb_wlh4yt",
       "medicamentoId": "id_mrdhiixb_dpy6t1",
       "nome": "EV"
+    },
+    {
+      "id": "id_mrdj4m4i_wqmgk3",
+      "medicamentoId": "id_mrdj4edb_d1jgff",
+      "nome": "IM"
     }
   ],
   "locais": [
@@ -132,6 +146,18 @@
       "medicamentoId": "id_mrdhiixb_dpy6t1",
       "viaId": "id_mrdhiixb_wlh4yt",
       "nome": "Membro Superior"
+    },
+    {
+      "id": "id_mrdj4vtk_wt5zu5",
+      "medicamentoId": "id_mrdhiixb_nk6h3v",
+      "viaId": "id_mrdhiixb_l5kedm",
+      "nome": "Deltoide"
+    },
+    {
+      "id": "id_mrdj57m4_apu5xa",
+      "medicamentoId": "id_mrdj4edb_d1jgff",
+      "viaId": "id_mrdj4m4i_wqmgk3",
+      "nome": "Deltoide"
     }
   ],
   "regioes": [
@@ -239,6 +265,16 @@
       "id": "id_mrdhiixb_cns9po",
       "localId": "id_mrdhiixb_m9t9ly",
       "nome": "Não aplicável"
+    },
+    {
+      "id": "id_mrdj593c_ejx2jt",
+      "localId": "id_mrdhiixb_jomqc3",
+      "nome": "Direito"
+    },
+    {
+      "id": "id_mrdj5ccx_qtob55",
+      "localId": "id_mrdj57m4_apu5xa",
+      "nome": "Direito"
     }
   ],
   "laboratorios": [

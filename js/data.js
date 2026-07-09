@@ -69,16 +69,16 @@
         { id: viaSoroEV, medicamentoId: medSoro, nome: 'EV' }
       ],
       locais: [
-        { id: localDipironaDeltoide, medicamentoId: medDipirona, viaId: viaDipironaIM, nome: 'Deltoide' },
-        { id: localDipironaVentroGluteo, medicamentoId: medDipirona, viaId: viaDipironaIM, nome: 'Ventroglúteo' },
-        { id: localDipironaDorsoGluteo, medicamentoId: medDipirona, viaId: viaDipironaIM, nome: 'Dorsoglúteo' },
-        { id: localDipironaVastoLateral, medicamentoId: medDipirona, viaId: viaDipironaIM, nome: 'Vasto Lateral da Coxa' },
-        { id: localDipironaAbdomen, medicamentoId: medDipirona, viaId: viaDipironaSC, nome: 'Abdômen' },
-        { id: localDipironaFaceExternaBraco, medicamentoId: medDipirona, viaId: viaDipironaSC, nome: 'Face Externa do Braço' },
-        { id: localDipironaFaceExternaCoxa, medicamentoId: medDipirona, viaId: viaDipironaSC, nome: 'Face Externa da Coxa' },
-        { id: localDipironaMembroSuperior, medicamentoId: medDipirona, viaId: viaDipironaEV, nome: 'Membro Superior' },
-        { id: localParacetamolVO, medicamentoId: medParacetamol, viaId: viaParacetamolVO, nome: 'Via Oral' },
-        { id: localSoroMembroSuperior, medicamentoId: medSoro, viaId: viaSoroEV, nome: 'Membro Superior' }
+        { id: localDipironaDeltoide, viaId: viaDipironaIM, nome: 'Deltoide' },
+        { id: localDipironaVentroGluteo, viaId: viaDipironaIM, nome: 'Ventroglúteo' },
+        { id: localDipironaDorsoGluteo, viaId: viaDipironaIM, nome: 'Dorsoglúteo' },
+        { id: localDipironaVastoLateral, viaId: viaDipironaIM, nome: 'Vasto Lateral da Coxa' },
+        { id: localDipironaAbdomen, viaId: viaDipironaSC, nome: 'Abdômen' },
+        { id: localDipironaFaceExternaBraco, viaId: viaDipironaSC, nome: 'Face Externa do Braço' },
+        { id: localDipironaFaceExternaCoxa, viaId: viaDipironaSC, nome: 'Face Externa da Coxa' },
+        { id: localDipironaMembroSuperior, viaId: viaDipironaEV, nome: 'Membro Superior' },
+        { id: localParacetamolVO, viaId: viaParacetamolVO, nome: 'Via Oral' },
+        { id: localSoroMembroSuperior, viaId: viaSoroEV, nome: 'Membro Superior' }
       ],
       regioes: [
         { id: uid(), localId: localDipironaDeltoide, nome: 'Direito' },

@@ -74,14 +74,11 @@
     </section>
 
     <section class="card">
-      <h2>Locais de Aplicação (vinculados a uma via)</h2>
+      <h2>Locais de Aplicação (vinculados apenas à via de administração)</h2>
+      <p class="ajuda">O local não depende do medicamento — qualquer medicamento que use a mesma via (ex.: IM) compartilha os mesmos locais.</p>
       <div class="linha-form">
         <div class="campo">
-          <label for="localMedicamento">Medicamento</label>
-          <select id="localMedicamento"></select>
-        </div>
-        <div class="campo">
-          <label for="localVia">Via</label>
+          <label for="localVia">Via (medicamento — via)</label>
           <select id="localVia"></select>
         </div>
         <div class="campo">
@@ -91,7 +88,7 @@
         <button type="button" class="primario" id="btnAddLocal">Adicionar</button>
       </div>
       <table class="tabela-admin">
-        <thead><tr><th>Medicamento</th><th>Via</th><th>Local</th><th>Ações</th></tr></thead>
+        <thead><tr><th>Via</th><th>Local</th><th>Ações</th></tr></thead>
         <tbody id="tabelaLocais"></tbody>
       </table>
     </section>
@@ -100,7 +97,7 @@
       <h2>Região/Lado (vinculada a um local)</h2>
       <div class="linha-form">
         <div class="campo">
-          <label for="regiaoLocal">Local (medicamento — via — local)</label>
+          <label for="regiaoLocal">Local (via — local)</label>
           <select id="regiaoLocal"></select>
         </div>
         <div class="campo">

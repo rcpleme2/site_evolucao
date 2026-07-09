@@ -1,10 +1,6 @@
 {
   "medicamentos": [
     {
-      "id": "id_mrdhiixb_dpy6t1",
-      "nome": "Soro Fisiológico 0,9%"
-    },
-    {
       "id": "id_mrdj4edb_d1jgff",
       "nome": "Vitamina D3 (Colecalciferol)"
     },
@@ -27,19 +23,25 @@
     {
       "id": "id_mrdlkf2c_djlirs",
       "nome": "Vitamina B9 (Metilfolato)"
+    },
+    {
+      "id": "id_mrdqrpnq_q4g5zl",
+      "nome": "Tirzepatida"
+    },
+    {
+      "id": "id_mrdquwh3_jk2f6p",
+      "nome": "PQQ (Pirroloquinolina Quinona)"
+    },
+    {
+      "id": "id_mrdqxsw1_6uhjnn",
+      "nome": "Complexo B – com Prolina e Silicio"
+    },
+    {
+      "id": "id_mrdqzro8_l1z458",
+      "nome": "Complexo B sem B1"
     }
   ],
   "doses": [
-    {
-      "id": "id_mrdhiixb_mdsp5o",
-      "medicamentoId": "id_mrdhiixb_dpy6t1",
-      "valor": "100ml"
-    },
-    {
-      "id": "id_mrdhiixb_wdps12",
-      "medicamentoId": "id_mrdhiixb_dpy6t1",
-      "valor": "500ml"
-    },
     {
       "id": "id_mrdj4ikp_zagdv3",
       "medicamentoId": "id_mrdj4edb_d1jgff",
@@ -69,6 +71,66 @@
       "id": "id_mrdlkx9b_k17o5s",
       "medicamentoId": "id_mrdlkf2c_djlirs",
       "valor": "2,5 mg/ 2mL"
+    },
+    {
+      "id": "id_mrdqs0fc_e1dhw7",
+      "medicamentoId": "id_mrdqrpnq_q4g5zl",
+      "valor": "2,5 mg - 10 ui"
+    },
+    {
+      "id": "id_mrdqs9jg_6w4cfs",
+      "medicamentoId": "id_mrdqrpnq_q4g5zl",
+      "valor": "3,75 mg = 10 ui"
+    },
+    {
+      "id": "id_mrdqsj14_ax6pdb",
+      "medicamentoId": "id_mrdqrpnq_q4g5zl",
+      "valor": "5,0 mg - 20 ui"
+    },
+    {
+      "id": "id_mrdqt12p_nlvekw",
+      "medicamentoId": "id_mrdqrpnq_q4g5zl",
+      "valor": "6,25 mg - 25ui"
+    },
+    {
+      "id": "id_mrdqtbx0_xbx3bp",
+      "medicamentoId": "id_mrdqrpnq_q4g5zl",
+      "valor": "7,5 mg - 30 ui"
+    },
+    {
+      "id": "id_mrdqtjef_s7aw43",
+      "medicamentoId": "id_mrdqrpnq_q4g5zl",
+      "valor": "8,75 mg - 35 ui"
+    },
+    {
+      "id": "id_mrdqtnl5_9c1t8c",
+      "medicamentoId": "id_mrdqrpnq_q4g5zl",
+      "valor": "10 mg - 40 ui"
+    },
+    {
+      "id": "id_mrdqttac_4e1gif",
+      "medicamentoId": "id_mrdqrpnq_q4g5zl",
+      "valor": "11,25 mg - 45 ui"
+    },
+    {
+      "id": "id_mrdqtz0k_z0c5si",
+      "medicamentoId": "id_mrdqrpnq_q4g5zl",
+      "valor": "12,5 mg - 50 ui"
+    },
+    {
+      "id": "id_mrdqxvfo_wda5c5",
+      "medicamentoId": "id_mrdqxsw1_6uhjnn",
+      "valor": "(L-prolina 10mg + Monometilsilanetriol (Silício) 150 mcg + Selênio 80mcg + Sulfato de Zinco 10mg + Vit B2 (Riboflavina) 4mg + Vit B3 (Nicotinamida) 10mg + Vit B5 (D-pantenol) 15mg + Vit B6 (Piridoxina HCl) 10mg + Folinato de Cálcio 500mcg) / 5mL"
+    },
+    {
+      "id": "id_mrdqymnt_1uxhzt",
+      "medicamentoId": "id_mrdquwh3_jk2f6p",
+      "valor": "2,5 mg / 2mL"
+    },
+    {
+      "id": "id_mrdr05iu_urzy4n",
+      "medicamentoId": "id_mrdqzro8_l1z458",
+      "valor": "(RIBOFLAVINA 5MG/ML + NICOTINAMIDA 5MG/ML + PIRIDOXINA 5MG/ML + D-PANTENOL 25MG/ML) - 2ML"
     }
   ],
   "vias": [
@@ -247,11 +309,6 @@
   ],
   "medicamentoVias": [
     {
-      "id": "mv_id_mrdhiixb_wlh4yt",
-      "medicamentoId": "id_mrdhiixb_dpy6t1",
-      "viaId": "id_mrdhiixb_093u3q"
-    },
-    {
       "id": "mv_id_mrdj4m4i_wqmgk3",
       "medicamentoId": "id_mrdj4edb_d1jgff",
       "viaId": "id_mrdhiixb_l5kedm"
@@ -284,6 +341,31 @@
     {
       "id": "id_mrdll1f0_9htk36",
       "medicamentoId": "id_mrdlkf2c_djlirs",
+      "viaId": "id_mrdhiixb_l5kedm"
+    },
+    {
+      "id": "id_mrdqu71e_cjkb0v",
+      "medicamentoId": "id_mrdqrpnq_q4g5zl",
+      "viaId": "id_mrdhiixb_c4v9qg"
+    },
+    {
+      "id": "id_mrdqwnlf_ahbmwi",
+      "medicamentoId": "id_mrdquwh3_jk2f6p",
+      "viaId": "id_mrdhiixb_l5kedm"
+    },
+    {
+      "id": "id_mrdqwrq0_4lq7ji",
+      "medicamentoId": "id_mrdquwh3_jk2f6p",
+      "viaId": "id_mrdhiixb_093u3q"
+    },
+    {
+      "id": "id_mrdr0p4h_9c45ox",
+      "medicamentoId": "id_mrdqzro8_l1z458",
+      "viaId": "id_mrdhiixb_093u3q"
+    },
+    {
+      "id": "id_mrdr0qjd_2b1jwx",
+      "medicamentoId": "id_mrdqzro8_l1z458",
       "viaId": "id_mrdhiixb_l5kedm"
     }
   ]

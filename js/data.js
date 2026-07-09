@@ -142,7 +142,7 @@
 
   function garantirDb() {
     if (!dbAtual) {
-      throw new Error('Dados ainda não carregados — chame carregarDb() antes de usar PrescricaoDB.');
+      throw new Error('Dados ainda não carregados — chame carregarDb() antes de usar EvolucaoDB.');
     }
     return dbAtual;
   }
@@ -262,7 +262,7 @@
     return `Erro HTTP ${status} ${contexto}.`;
   }
 
-  global.PrescricaoDB = {
+  global.EvolucaoDB = {
     carregarDb,
     obterFonteDados,
     getAll,

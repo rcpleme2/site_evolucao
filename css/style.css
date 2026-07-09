@@ -170,13 +170,13 @@ button:disabled {
   cursor: not-allowed;
 }
 
-ul.itens-prescricao {
+ul.itens-evolucao {
   list-style: none;
   margin: 0 0 1rem;
   padding: 0;
 }
 
-ul.itens-prescricao li {
+ul.itens-evolucao li {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -188,7 +188,7 @@ ul.itens-prescricao li {
   background: var(--cinza-claro);
 }
 
-ul.itens-prescricao li button {
+ul.itens-evolucao li button {
   padding: 0.25rem 0.6rem;
   font-size: 0.78rem;
 }

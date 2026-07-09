@@ -5,7 +5,7 @@
  * automaticamente e o campo seguinte já é aberto, sem exigir clique.
  */
 (function () {
-  const db = window.PrescricaoDB;
+  const db = window.EvolucaoDB;
 
   const avisoCarregamento = document.getElementById('avisoCarregamento');
   const avisoInstrucao = document.getElementById('avisoInstrucao');

@@ -4,7 +4,7 @@
  * dependente à sua entidade "pai" (medicamento > via > local > região).
  */
 (function () {
-  const db = window.PrescricaoDB;
+  const db = window.EvolucaoDB;
 
   const avisoCarregamento = document.getElementById('avisoCarregamento');
   const avisoInstrucao = document.getElementById('avisoInstrucao');
@@ -327,7 +327,7 @@
     renderizarTudo();
   });
 
-  const TOKEN_SESSION_KEY = 'prescricao_admin_gh_token';
+  const TOKEN_SESSION_KEY = 'evolucao_admin_gh_token';
   const campoOwner = document.getElementById('pubOwner');
   const campoRepo = document.getElementById('pubRepo');
   const campoBranch = document.getElementById('pubBranch');

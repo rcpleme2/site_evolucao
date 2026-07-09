@@ -10,7 +10,7 @@
     },
     {
       "id": "id_mrdlhflq_vtanh4",
-      "nome": "ADEK - (Vitamina A (palmitato retinol) 50.000UI > Vitamina D3 (colecalciferol) 600.000UI > Vitamina E (acetato DL-alfa tocoferol) 400UI > Vitamina K2 MK7 (menaquinona-7)1.300mcg)"
+      "nome": "ADEK"
     },
     {
       "id": "id_mrdlil8f_8hkdgl",
@@ -59,14 +59,9 @@
   ],
   "doses": [
     {
-      "id": "id_mrdlgkjq_l6liy1",
-      "medicamentoId": "id_mrdlg093_yy5riz",
-      "valor": "2500 mcg"
-    },
-    {
       "id": "id_mrdlhmzz_4pnwt3",
       "medicamentoId": "id_mrdlhflq_vtanh4",
-      "valor": "600.000 UI"
+      "valor": "Vitamina A (palmitato retinol) 50.000UI > Vitamina D3 (colecalciferol) 600.000UI > Vitamina E (acetato DL-alfa tocoferol) 400UI > Vitamina K2 MK7 (menaquinona-7)1.300mcg) UI / 1 mL"
     },
     {
       "id": "id_mrdlinrm_9imzop",
@@ -76,52 +71,52 @@
     {
       "id": "id_mrdlkx9b_k17o5s",
       "medicamentoId": "id_mrdlkf2c_djlirs",
-      "valor": "2,5 mg/ 2mL"
+      "valor": "2,5 mg / 2mL"
     },
     {
       "id": "id_mrdqs0fc_e1dhw7",
       "medicamentoId": "id_mrdqrpnq_q4g5zl",
-      "valor": "2,5 mg - 10 ui"
+      "valor": "10 ui (2,5 mg)"
     },
     {
       "id": "id_mrdqs9jg_6w4cfs",
       "medicamentoId": "id_mrdqrpnq_q4g5zl",
-      "valor": "3,75 mg = 10 ui"
+      "valor": "15 ui (3,75 mg)"
     },
     {
       "id": "id_mrdqsj14_ax6pdb",
       "medicamentoId": "id_mrdqrpnq_q4g5zl",
-      "valor": "5,0 mg - 20 ui"
+      "valor": "20 ui (5,0 mg)"
     },
     {
       "id": "id_mrdqt12p_nlvekw",
       "medicamentoId": "id_mrdqrpnq_q4g5zl",
-      "valor": "6,25 mg - 25ui"
+      "valor": "25ui (6,25 mg)"
     },
     {
       "id": "id_mrdqtbx0_xbx3bp",
       "medicamentoId": "id_mrdqrpnq_q4g5zl",
-      "valor": "7,5 mg - 30 ui"
+      "valor": "30 ui (7,5 mg)"
     },
     {
       "id": "id_mrdqtjef_s7aw43",
       "medicamentoId": "id_mrdqrpnq_q4g5zl",
-      "valor": "8,75 mg - 35 ui"
+      "valor": "35 ui (8,75 mg)"
     },
     {
       "id": "id_mrdqtnl5_9c1t8c",
       "medicamentoId": "id_mrdqrpnq_q4g5zl",
-      "valor": "10 mg - 40 ui"
+      "valor": "40 ui (10 mg)"
     },
     {
       "id": "id_mrdqttac_4e1gif",
       "medicamentoId": "id_mrdqrpnq_q4g5zl",
-      "valor": "11,25 mg - 45 ui"
+      "valor": "45 ui (11,25 mg)"
     },
     {
       "id": "id_mrdqtz0k_z0c5si",
       "medicamentoId": "id_mrdqrpnq_q4g5zl",
-      "valor": "12,5 mg - 50 ui"
+      "valor": "50 ui (12,5 mg)"
     },
     {
       "id": "id_mrdqxvfo_wda5c5",

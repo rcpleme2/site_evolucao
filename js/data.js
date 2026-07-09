@@ -5,7 +5,7 @@
  * sem alterar a lógica das telas.
  */
 (function (global) {
-  const STORAGE_KEY = 'prescricao_db_v1';
+  const STORAGE_KEY = 'prescricao_db_v2';
 
   function uid() {
     return 'id_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 8);
@@ -15,6 +15,19 @@
     const medDipirona = uid();
     const medParacetamol = uid();
     const medSoro = uid();
+
+    const viaDipironaIM = uid();
+    const viaDipironaEV = uid();
+    const viaDipironaSC = uid();
+    const viaParacetamolVO = uid();
+    const viaSoroEV = uid();
+
+    const localDipironaDorsoGluteo = uid();
+    const localDipironaDeltoide = uid();
+    const localDipironaMembroSuperior = uid();
+    const localDipironaAbdomen = uid();
+    const localParacetamolVO = uid();
+    const localSoroMembroSuperior = uid();
 
     const profA = uid();
     const profB = uid();
@@ -33,22 +46,44 @@
         { id: uid(), medicamentoId: medSoro, valor: '100ml' },
         { id: uid(), medicamentoId: medSoro, valor: '500ml' }
       ],
+      vias: [
+        { id: viaDipironaIM, medicamentoId: medDipirona, nome: 'IM' },
+        { id: viaDipironaEV, medicamentoId: medDipirona, nome: 'EV' },
+        { id: viaDipironaSC, medicamentoId: medDipirona, nome: 'SC' },
+        { id: viaParacetamolVO, medicamentoId: medParacetamol, nome: 'VO' },
+        { id: viaSoroEV, medicamentoId: medSoro, nome: 'EV' }
+      ],
       locais: [
-        { id: uid(), medicamentoId: medDipirona, nome: 'Intramuscular (IM)' },
-        { id: uid(), medicamentoId: medDipirona, nome: 'Endovenoso (EV)' },
-        { id: uid(), medicamentoId: medParacetamol, nome: 'Via Oral (VO)' },
-        { id: uid(), medicamentoId: medSoro, nome: 'Endovenoso (EV)' }
+        { id: localDipironaDorsoGluteo, medicamentoId: medDipirona, viaId: viaDipironaIM, nome: 'Dorso-glúteo' },
+        { id: localDipironaDeltoide, medicamentoId: medDipirona, viaId: viaDipironaIM, nome: 'Deltoide' },
+        { id: localDipironaMembroSuperior, medicamentoId: medDipirona, viaId: viaDipironaEV, nome: 'Membro superior' },
+        { id: localDipironaAbdomen, medicamentoId: medDipirona, viaId: viaDipironaSC, nome: 'Abdômen' },
+        { id: localParacetamolVO, medicamentoId: medParacetamol, viaId: viaParacetamolVO, nome: 'Via oral' },
+        { id: localSoroMembroSuperior, medicamentoId: medSoro, viaId: viaSoroEV, nome: 'Membro superior' }
+      ],
+      regioes: [
+        { id: uid(), localId: localDipironaDorsoGluteo, nome: 'Direito' },
+        { id: uid(), localId: localDipironaDorsoGluteo, nome: 'Esquerdo' },
+        { id: uid(), localId: localDipironaDeltoide, nome: 'Direito' },
+        { id: uid(), localId: localDipironaDeltoide, nome: 'Esquerdo' },
+        { id: uid(), localId: localDipironaMembroSuperior, nome: 'Direito' },
+        { id: uid(), localId: localDipironaMembroSuperior, nome: 'Esquerdo' },
+        { id: uid(), localId: localDipironaAbdomen, nome: '3h' },
+        { id: uid(), localId: localDipironaAbdomen, nome: '6h' },
+        { id: uid(), localId: localDipironaAbdomen, nome: '9h' },
+        { id: uid(), localId: localDipironaAbdomen, nome: '12h' },
+        { id: uid(), localId: localSoroMembroSuperior, nome: 'Direito' },
+        { id: uid(), localId: localSoroMembroSuperior, nome: 'Esquerdo' },
+        { id: uid(), localId: localParacetamolVO, nome: 'Não aplicável' }
       ],
       laboratorios: [
-        { id: uid(), medicamentoId: medDipirona, nome: 'Hipolabor' },
-        { id: uid(), medicamentoId: medDipirona, nome: 'EMS' },
-        { id: uid(), medicamentoId: medParacetamol, nome: 'EMS' },
-        { id: uid(), medicamentoId: medParacetamol, nome: 'Neo Química' },
-        { id: uid(), medicamentoId: medSoro, nome: 'Equiplex' }
+        { id: uid(), nome: 'Essentia Pharma' },
+        { id: uid(), nome: 'Biomeds' },
+        { id: uid(), nome: 'Health Tech' }
       ],
       profissionais: [
-        { id: profA, nome: 'Dra. Ana Souza', registro: 'COREN 123456' },
-        { id: profB, nome: 'Téc. Enf. Carlos Lima', registro: 'COREN 654321' }
+        { id: profA, nome: 'Tarcila Disner - Técnica em Enfermagem', registro: 'COREN 1221186' },
+        { id: profB, nome: 'Eliane Carvalho - Técnica em Enfermagem', registro: 'COREN 1190230' }
       ]
     };
   }

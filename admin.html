@@ -14,8 +14,9 @@
 
   <main>
     <div class="aviso">
-      Cadastre medicamentos e, em seguida, vincule doses, locais de aplicação e laboratórios a cada medicamento.
-      Profissionais são uma lista geral, independente do medicamento.
+      Cadastre medicamentos e, em seguida, vincule doses e vias de administração a cada medicamento, locais de
+      aplicação a cada via, e regiões/lados a cada local. Laboratórios e profissionais são listas gerais,
+      independentes do medicamento.
     </div>
 
     <section class="card">
@@ -53,31 +54,69 @@
     </section>
 
     <section class="card">
-      <h2>Locais de Aplicação (vinculados a um medicamento)</h2>
+      <h2>Vias de Administração (vinculadas a um medicamento)</h2>
+      <div class="linha-form">
+        <div class="campo">
+          <label for="viaMedicamento">Medicamento</label>
+          <select id="viaMedicamento"></select>
+        </div>
+        <div class="campo">
+          <label for="novaViaNome">Via de administração</label>
+          <input type="text" id="novaViaNome" placeholder="Ex.: IM, EV, SC, VO" />
+        </div>
+        <button type="button" class="primario" id="btnAddVia">Adicionar</button>
+      </div>
+      <table class="tabela-admin">
+        <thead><tr><th>Medicamento</th><th>Via</th><th>Ações</th></tr></thead>
+        <tbody id="tabelaVias"></tbody>
+      </table>
+    </section>
+
+    <section class="card">
+      <h2>Locais de Aplicação (vinculados a uma via)</h2>
       <div class="linha-form">
         <div class="campo">
           <label for="localMedicamento">Medicamento</label>
           <select id="localMedicamento"></select>
         </div>
         <div class="campo">
+          <label for="localVia">Via</label>
+          <select id="localVia"></select>
+        </div>
+        <div class="campo">
           <label for="novoLocalNome">Local de aplicação</label>
-          <input type="text" id="novoLocalNome" placeholder="Ex.: Subcutâneo (SC)" />
+          <input type="text" id="novoLocalNome" placeholder="Ex.: Deltoide, Abdômen…" />
         </div>
         <button type="button" class="primario" id="btnAddLocal">Adicionar</button>
       </div>
       <table class="tabela-admin">
-        <thead><tr><th>Medicamento</th><th>Local</th><th>Ações</th></tr></thead>
+        <thead><tr><th>Medicamento</th><th>Via</th><th>Local</th><th>Ações</th></tr></thead>
         <tbody id="tabelaLocais"></tbody>
       </table>
     </section>
 
     <section class="card">
-      <h2>Laboratórios (vinculados a um medicamento)</h2>
+      <h2>Região/Lado (vinculada a um local)</h2>
       <div class="linha-form">
         <div class="campo">
-          <label for="laboratorioMedicamento">Medicamento</label>
-          <select id="laboratorioMedicamento"></select>
+          <label for="regiaoLocal">Local (medicamento — via — local)</label>
+          <select id="regiaoLocal"></select>
         </div>
+        <div class="campo">
+          <label for="novaRegiaoNome">Região/lado</label>
+          <input type="text" id="novaRegiaoNome" placeholder="Ex.: Direito, Esquerdo, 3h…" />
+        </div>
+        <button type="button" class="primario" id="btnAddRegiao">Adicionar</button>
+      </div>
+      <table class="tabela-admin">
+        <thead><tr><th>Local</th><th>Região/Lado</th><th>Ações</th></tr></thead>
+        <tbody id="tabelaRegioes"></tbody>
+      </table>
+    </section>
+
+    <section class="card">
+      <h2>Laboratórios (lista geral)</h2>
+      <div class="linha-form">
         <div class="campo">
           <label for="novoLaboratorioNome">Laboratório</label>
           <input type="text" id="novoLaboratorioNome" placeholder="Ex.: Eurofarma" />
@@ -85,7 +124,7 @@
         <button type="button" class="primario" id="btnAddLaboratorio">Adicionar</button>
       </div>
       <table class="tabela-admin">
-        <thead><tr><th>Medicamento</th><th>Laboratório</th><th>Ações</th></tr></thead>
+        <thead><tr><th>Laboratório</th><th>Ações</th></tr></thead>
         <tbody id="tabelaLaboratorios"></tbody>
       </table>
     </section>

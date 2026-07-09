@@ -1,6 +1,6 @@
 /**
  * Lógica do formulário progressivo de prescrição.
- * Cada campo depende do valor escolhido no campo anterior.
+ * Cada campo depende do valor escolhido no(s) campo(s) anterior(es).
  */
 (function () {
   const db = window.PrescricaoDB;
@@ -8,7 +8,9 @@
 
   const selMedicamento = document.getElementById('medicamento');
   const selDose = document.getElementById('dose');
+  const selVia = document.getElementById('via');
   const selLocal = document.getElementById('local');
+  const selRegiao = document.getElementById('regiao');
   const selLaboratorio = document.getElementById('laboratorio');
   const selProfissional = document.getElementById('profissional');
   const btnAdicionar = document.getElementById('btnAdicionar');
@@ -53,13 +55,15 @@
 
   function aoMudarMedicamento() {
     const medicamentoId = selMedicamento.value;
-    resetarSelect(selLocal, 'Selecione a dose primeiro…');
-    resetarSelect(selLaboratorio, 'Selecione o local primeiro…');
+    resetarSelect(selLocal, 'Selecione a via primeiro…');
+    resetarSelect(selRegiao, 'Selecione o local primeiro…');
+    resetarSelect(selLaboratorio, 'Selecione a região/lado primeiro…');
     resetarSelect(selProfissional, 'Selecione o laboratório primeiro…');
     atualizarBotaoAdicionar();
 
     if (!medicamentoId) {
       resetarSelect(selDose, 'Selecione o medicamento primeiro…');
+      resetarSelect(selVia, 'Selecione a dose primeiro…');
       return;
     }
 
@@ -67,39 +71,77 @@
     popularSelect(selDose, doses, 'Selecione a dose…', (d) => d.id, (d) => d.valor);
     selDose.disabled = doses.length === 0;
     if (doses.length === 0) selDose.innerHTML = '<option value="">Nenhuma dose cadastrada para este medicamento</option>';
+
+    resetarSelect(selVia, 'Selecione a dose primeiro…');
   }
 
   function aoMudarDose() {
     const medicamentoId = selMedicamento.value;
-    resetarSelect(selLaboratorio, 'Selecione o local primeiro…');
+    resetarSelect(selLocal, 'Selecione a via primeiro…');
+    resetarSelect(selRegiao, 'Selecione o local primeiro…');
+    resetarSelect(selLaboratorio, 'Selecione a região/lado primeiro…');
     resetarSelect(selProfissional, 'Selecione o laboratório primeiro…');
     atualizarBotaoAdicionar();
 
     if (!selDose.value || !medicamentoId) {
-      resetarSelect(selLocal, 'Selecione a dose primeiro…');
+      resetarSelect(selVia, 'Selecione a dose primeiro…');
       return;
     }
 
-    const locais = db.getFiltrado('locais', { medicamentoId });
-    popularSelect(selLocal, locais, 'Selecione o local de aplicação…', (l) => l.id, (l) => l.nome);
-    selLocal.disabled = locais.length === 0;
-    if (locais.length === 0) selLocal.innerHTML = '<option value="">Nenhum local cadastrado para este medicamento</option>';
+    const vias = db.getFiltrado('vias', { medicamentoId });
+    popularSelect(selVia, vias, 'Selecione a via de administração…', (v) => v.id, (v) => v.nome);
+    selVia.disabled = vias.length === 0;
+    if (vias.length === 0) selVia.innerHTML = '<option value="">Nenhuma via cadastrada para este medicamento</option>';
   }
 
-  function aoMudarLocal() {
+  function aoMudarVia() {
     const medicamentoId = selMedicamento.value;
+    const viaId = selVia.value;
+    resetarSelect(selRegiao, 'Selecione o local primeiro…');
+    resetarSelect(selLaboratorio, 'Selecione a região/lado primeiro…');
     resetarSelect(selProfissional, 'Selecione o laboratório primeiro…');
     atualizarBotaoAdicionar();
 
-    if (!selLocal.value || !medicamentoId) {
-      resetarSelect(selLaboratorio, 'Selecione o local primeiro…');
+    if (!viaId || !medicamentoId) {
+      resetarSelect(selLocal, 'Selecione a via primeiro…');
       return;
     }
 
-    const laboratorios = db.getFiltrado('laboratorios', { medicamentoId });
+    const locais = db.getFiltrado('locais', { medicamentoId, viaId });
+    popularSelect(selLocal, locais, 'Selecione o local de aplicação…', (l) => l.id, (l) => l.nome);
+    selLocal.disabled = locais.length === 0;
+    if (locais.length === 0) selLocal.innerHTML = '<option value="">Nenhum local cadastrado para esta via</option>';
+  }
+
+  function aoMudarLocal() {
+    const localId = selLocal.value;
+    resetarSelect(selLaboratorio, 'Selecione a região/lado primeiro…');
+    resetarSelect(selProfissional, 'Selecione o laboratório primeiro…');
+    atualizarBotaoAdicionar();
+
+    if (!localId) {
+      resetarSelect(selRegiao, 'Selecione o local primeiro…');
+      return;
+    }
+
+    const regioes = db.getFiltrado('regioes', { localId });
+    popularSelect(selRegiao, regioes, 'Selecione a região/lado…', (r) => r.id, (r) => r.nome);
+    selRegiao.disabled = regioes.length === 0;
+    if (regioes.length === 0) selRegiao.innerHTML = '<option value="">Nenhuma região cadastrada para este local</option>';
+  }
+
+  function aoMudarRegiao() {
+    atualizarBotaoAdicionar();
+
+    if (!selRegiao.value) {
+      resetarSelect(selLaboratorio, 'Selecione a região/lado primeiro…');
+      return;
+    }
+
+    const laboratorios = db.getAll('laboratorios');
     popularSelect(selLaboratorio, laboratorios, 'Selecione o laboratório…', (l) => l.id, (l) => l.nome);
     selLaboratorio.disabled = laboratorios.length === 0;
-    if (laboratorios.length === 0) selLaboratorio.innerHTML = '<option value="">Nenhum laboratório cadastrado para este medicamento</option>';
+    if (laboratorios.length === 0) selLaboratorio.innerHTML = '<option value="">Nenhum laboratório cadastrado</option>';
   }
 
   function aoMudarLaboratorio() {
@@ -111,14 +153,20 @@
     }
 
     const profissionais = db.getAll('profissionais');
-    popularSelect(selProfissional, profissionais, 'Selecione o profissional…', (p) => p.id, (p) => `${p.nome} (${p.registro})`);
+    popularSelect(selProfissional, profissionais, 'Selecione o profissional…', (p) => p.id, (p) => p.nome);
     selProfissional.disabled = profissionais.length === 0;
     if (profissionais.length === 0) selProfissional.innerHTML = '<option value="">Nenhum profissional cadastrado</option>';
   }
 
   function atualizarBotaoAdicionar() {
     const completo =
-      selMedicamento.value && selDose.value && selLocal.value && selLaboratorio.value && selProfissional.value;
+      selMedicamento.value &&
+      selDose.value &&
+      selVia.value &&
+      selLocal.value &&
+      selRegiao.value &&
+      selLaboratorio.value &&
+      selProfissional.value;
     btnAdicionar.disabled = !completo;
   }
 
@@ -130,13 +178,15 @@
   function adicionarItem() {
     const medicamento = db.getById('medicamentos', selMedicamento.value);
     const dose = db.getById('doses', selDose.value);
+    const via = db.getById('vias', selVia.value);
     const local = db.getById('locais', selLocal.value);
+    const regiao = db.getById('regioes', selRegiao.value);
     const laboratorio = db.getById('laboratorios', selLaboratorio.value);
     const profissional = db.getById('profissionais', selProfissional.value);
 
-    if (!medicamento || !dose || !local || !laboratorio || !profissional) return;
+    if (!medicamento || !dose || !via || !local || !regiao || !laboratorio || !profissional) return;
 
-    itensPrescricao.push({ medicamento, dose, local, laboratorio, profissional });
+    itensPrescricao.push({ medicamento, dose, via, local, regiao, laboratorio, profissional });
     renderizarItens();
     renderizarTextoFinal();
     limparCampos();
@@ -148,6 +198,11 @@
     renderizarTextoFinal();
   }
 
+  function frasePrescricao(item) {
+    const regiaoTexto = item.regiao.nome === 'Não aplicável' ? '' : ` ${item.regiao.nome}`;
+    return `Realizada aplicação via ${item.via.nome} de ${item.medicamento.nome} ${item.dose.valor} em ${item.local.nome}${regiaoTexto} - Laboratório ${item.laboratorio.nome}`;
+  }
+
   function renderizarItens() {
     listaItens.innerHTML = '';
     if (itensPrescricao.length === 0) {
@@ -157,7 +212,7 @@
     itensPrescricao.forEach((item, indice) => {
       const li = document.createElement('li');
       const texto = document.createElement('span');
-      texto.textContent = `${item.medicamento.nome} — ${item.dose.valor} — ${item.local.nome} — Lab: ${item.laboratorio.nome}`;
+      texto.textContent = frasePrescricao(item);
       const btnRemover = document.createElement('button');
       btnRemover.type = 'button';
       btnRemover.className = 'perigo';
@@ -184,12 +239,10 @@
     linhas.push(`PRESCRIÇÃO DE ENFERMAGEM — ${formatarData(new Date())}`);
     linhas.push('');
     itensPrescricao.forEach((item, indice) => {
-      linhas.push(
-        `${indice + 1}. ${item.medicamento.nome} ${item.dose.valor} — Via: ${item.local.nome} — Laboratório: ${item.laboratorio.nome}`
-      );
+      linhas.push(`${indice + 1}. ${frasePrescricao(item)}`);
     });
     linhas.push('');
-    linhas.push(`Profissional prescrevente: ${profissional.nome} (${profissional.registro})`);
+    linhas.push(`${profissional.nome} - ${profissional.registro}`);
 
     textoFinal.value = linhas.join('\n');
   }
@@ -210,11 +263,11 @@
     setTimeout(() => (copiaStatus.textContent = ''), 2500);
   }
 
-  selMedicamento.addEventListener('change', () => {
-    aoMudarMedicamento();
-  });
+  selMedicamento.addEventListener('change', aoMudarMedicamento);
   selDose.addEventListener('change', aoMudarDose);
+  selVia.addEventListener('change', aoMudarVia);
   selLocal.addEventListener('change', aoMudarLocal);
+  selRegiao.addEventListener('change', aoMudarRegiao);
   selLaboratorio.addEventListener('change', aoMudarLaboratorio);
   selProfissional.addEventListener('change', atualizarBotaoAdicionar);
 
@@ -229,8 +282,10 @@
 
   carregarMedicamentos();
   resetarSelect(selDose, 'Selecione o medicamento primeiro…');
-  resetarSelect(selLocal, 'Selecione a dose primeiro…');
-  resetarSelect(selLaboratorio, 'Selecione o local primeiro…');
+  resetarSelect(selVia, 'Selecione a dose primeiro…');
+  resetarSelect(selLocal, 'Selecione a via primeiro…');
+  resetarSelect(selRegiao, 'Selecione o local primeiro…');
+  resetarSelect(selLaboratorio, 'Selecione a região/lado primeiro…');
   resetarSelect(selProfissional, 'Selecione o laboratório primeiro…');
   renderizarItens();
   renderizarTextoFinal();

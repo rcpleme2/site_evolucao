@@ -1,0 +1,259 @@
+:root {
+  --azul-escuro: #1f3a5f;
+  --azul-medio: #3c6997;
+  --cinza-texto: #33404d;
+  --cinza-claro: #eef1f4;
+  --cinza-borda: #d3dae1;
+  --branco: #ffffff;
+  --sombra: 0 1px 3px rgba(31, 58, 95, 0.12);
+  --sucesso: #2e7d5b;
+  --perigo: #a8323b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--cinza-claro);
+  color: var(--cinza-texto);
+  line-height: 1.5;
+}
+
+header.topo {
+  background: var(--azul-escuro);
+  color: var(--branco);
+  padding: 1.25rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header.topo h1 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+header.topo nav a {
+  color: var(--branco);
+  text-decoration: none;
+  font-size: 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 0.4rem 0.9rem;
+  border-radius: 4px;
+}
+
+header.topo nav a:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+main {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1.5rem 3rem;
+}
+
+.card {
+  background: var(--branco);
+  border: 1px solid var(--cinza-borda);
+  border-radius: 8px;
+  box-shadow: var(--sombra);
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.card h2 {
+  margin-top: 0;
+  font-size: 1.05rem;
+  color: var(--azul-escuro);
+  border-bottom: 1px solid var(--cinza-borda);
+  padding-bottom: 0.6rem;
+}
+
+.campo {
+  margin-bottom: 1.1rem;
+}
+
+.campo label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+  color: var(--cinza-texto);
+}
+
+.campo .ajuda {
+  font-size: 0.78rem;
+  color: #6b7a89;
+  margin-top: 0.25rem;
+}
+
+select,
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 0.55rem 0.65rem;
+  border: 1px solid var(--cinza-borda);
+  border-radius: 5px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  background: var(--branco);
+  color: var(--cinza-texto);
+}
+
+select:disabled {
+  background: var(--cinza-claro);
+  color: #9aa7b3;
+  opacity: 0.75;
+  cursor: not-allowed;
+}
+
+select:focus,
+input:focus,
+textarea:focus {
+  outline: 2px solid var(--azul-medio);
+  outline-offset: 1px;
+}
+
+.botoes {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+button {
+  font-family: inherit;
+  font-size: 0.9rem;
+  padding: 0.55rem 1.1rem;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+button.primario {
+  background: var(--azul-medio);
+  color: var(--branco);
+}
+
+button.primario:hover {
+  background: var(--azul-escuro);
+}
+
+button.secundario {
+  background: var(--branco);
+  border-color: var(--cinza-borda);
+  color: var(--cinza-texto);
+}
+
+button.secundario:hover {
+  background: var(--cinza-claro);
+}
+
+button.perigo {
+  background: var(--branco);
+  border-color: var(--perigo);
+  color: var(--perigo);
+}
+
+button.perigo:hover {
+  background: #fbecec;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+ul.itens-prescricao {
+  list-style: none;
+  margin: 0 0 1rem;
+  padding: 0;
+}
+
+ul.itens-prescricao li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--cinza-borda);
+  border-radius: 5px;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  background: var(--cinza-claro);
+}
+
+ul.itens-prescricao li button {
+  padding: 0.25rem 0.6rem;
+  font-size: 0.78rem;
+}
+
+textarea#textoFinal {
+  min-height: 220px;
+  font-family: "Courier New", monospace;
+  font-size: 0.9rem;
+  white-space: pre-wrap;
+}
+
+table.tabela-admin {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  margin-bottom: 0.5rem;
+}
+
+table.tabela-admin th,
+table.tabela-admin td {
+  text-align: left;
+  padding: 0.5rem 0.6rem;
+  border-bottom: 1px solid var(--cinza-borda);
+}
+
+table.tabela-admin th {
+  color: var(--azul-escuro);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+table.tabela-admin td.acoes {
+  display: flex;
+  gap: 0.4rem;
+  white-space: nowrap;
+}
+
+.linha-form {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  margin-bottom: 1rem;
+}
+
+.linha-form .campo {
+  flex: 1;
+  min-width: 160px;
+  margin-bottom: 0;
+}
+
+.aviso {
+  font-size: 0.82rem;
+  padding: 0.6rem 0.8rem;
+  border-radius: 5px;
+  background: #eef4ff;
+  border: 1px solid #c9dcf5;
+  color: var(--azul-escuro);
+  margin-bottom: 1rem;
+}
+
+.rodape-nota {
+  font-size: 0.78rem;
+  color: #6b7a89;
+  text-align: center;
+  margin-top: 2rem;
+}

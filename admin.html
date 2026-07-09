@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gerenciar Cadastros — Sistema de Prescrições</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="topo">
+    <h1>Gerenciar Cadastros</h1>
+    <nav><a href="index.html">Voltar à Prescrição</a></nav>
+  </header>
+
+  <main>
+    <div class="aviso">
+      Cadastre medicamentos e, em seguida, vincule doses, locais de aplicação e laboratórios a cada medicamento.
+      Profissionais são uma lista geral, independente do medicamento.
+    </div>
+
+    <section class="card">
+      <h2>Medicamentos</h2>
+      <div class="linha-form">
+        <div class="campo">
+          <label for="novoMedicamentoNome">Nome do medicamento</label>
+          <input type="text" id="novoMedicamentoNome" placeholder="Ex.: Ibuprofeno" />
+        </div>
+        <button type="button" class="primario" id="btnAddMedicamento">Adicionar</button>
+      </div>
+      <table class="tabela-admin">
+        <thead><tr><th>Nome</th><th>Ações</th></tr></thead>
+        <tbody id="tabelaMedicamentos"></tbody>
+      </table>
+    </section>
+
+    <section class="card">
+      <h2>Doses (vinculadas a um medicamento)</h2>
+      <div class="linha-form">
+        <div class="campo">
+          <label for="doseMedicamento">Medicamento</label>
+          <select id="doseMedicamento"></select>
+        </div>
+        <div class="campo">
+          <label for="novaDoseValor">Dose</label>
+          <input type="text" id="novaDoseValor" placeholder="Ex.: 400mg" />
+        </div>
+        <button type="button" class="primario" id="btnAddDose">Adicionar</button>
+      </div>
+      <table class="tabela-admin">
+        <thead><tr><th>Medicamento</th><th>Dose</th><th>Ações</th></tr></thead>
+        <tbody id="tabelaDoses"></tbody>
+      </table>
+    </section>
+
+    <section class="card">
+      <h2>Locais de Aplicação (vinculados a um medicamento)</h2>
+      <div class="linha-form">
+        <div class="campo">
+          <label for="localMedicamento">Medicamento</label>
+          <select id="localMedicamento"></select>
+        </div>
+        <div class="campo">
+          <label for="novoLocalNome">Local de aplicação</label>
+          <input type="text" id="novoLocalNome" placeholder="Ex.: Subcutâneo (SC)" />
+        </div>
+        <button type="button" class="primario" id="btnAddLocal">Adicionar</button>
+      </div>
+      <table class="tabela-admin">
+        <thead><tr><th>Medicamento</th><th>Local</th><th>Ações</th></tr></thead>
+        <tbody id="tabelaLocais"></tbody>
+      </table>
+    </section>
+
+    <section class="card">
+      <h2>Laboratórios (vinculados a um medicamento)</h2>
+      <div class="linha-form">
+        <div class="campo">
+          <label for="laboratorioMedicamento">Medicamento</label>
+          <select id="laboratorioMedicamento"></select>
+        </div>
+        <div class="campo">
+          <label for="novoLaboratorioNome">Laboratório</label>
+          <input type="text" id="novoLaboratorioNome" placeholder="Ex.: Eurofarma" />
+        </div>
+        <button type="button" class="primario" id="btnAddLaboratorio">Adicionar</button>
+      </div>
+      <table class="tabela-admin">
+        <thead><tr><th>Medicamento</th><th>Laboratório</th><th>Ações</th></tr></thead>
+        <tbody id="tabelaLaboratorios"></tbody>
+      </table>
+    </section>
+
+    <section class="card">
+      <h2>Profissionais Prescreventes</h2>
+      <div class="linha-form">
+        <div class="campo">
+          <label for="novoProfissionalNome">Nome</label>
+          <input type="text" id="novoProfissionalNome" placeholder="Ex.: Téc. Enf. João Pedro" />
+        </div>
+        <div class="campo">
+          <label for="novoProfissionalRegistro">Registro (COREN)</label>
+          <input type="text" id="novoProfissionalRegistro" placeholder="Ex.: COREN 987654" />
+        </div>
+        <button type="button" class="primario" id="btnAddProfissional">Adicionar</button>
+      </div>
+      <table class="tabela-admin">
+        <thead><tr><th>Nome</th><th>Registro</th><th>Ações</th></tr></thead>
+        <tbody id="tabelaProfissionais"></tbody>
+      </table>
+    </section>
+
+    <section class="card">
+      <h2>Restaurar Dados</h2>
+      <p class="ajuda">Restaura os cadastros para os valores placeholder originais, apagando as alterações feitas.</p>
+      <div class="botoes">
+        <button type="button" class="perigo" id="btnResetar">Restaurar Placeholders</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/data.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

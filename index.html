@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sistema de Prescrições — Enfermagem</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="topo">
+    <h1>Sistema de Prescrições de Enfermagem</h1>
+    <nav><a href="admin.html">Gerenciar Cadastros</a></nav>
+  </header>
+
+  <main>
+    <div class="aviso">
+      Preencha os campos em ordem. Cada escolha define as opções disponíveis no campo seguinte.
+    </div>
+
+    <section class="card">
+      <h2>Novo Item da Prescrição</h2>
+
+      <div class="campo">
+        <label for="medicamento">1. Medicamento</label>
+        <select id="medicamento">
+          <option value="">Selecione o medicamento…</option>
+        </select>
+      </div>
+
+      <div class="campo">
+        <label for="dose">2. Dose</label>
+        <select id="dose" disabled>
+          <option value="">Selecione o medicamento primeiro…</option>
+        </select>
+      </div>
+
+      <div class="campo">
+        <label for="local">3. Local de Aplicação</label>
+        <select id="local" disabled>
+          <option value="">Selecione a dose primeiro…</option>
+        </select>
+      </div>
+
+      <div class="campo">
+        <label for="laboratorio">4. Laboratório</label>
+        <select id="laboratorio" disabled>
+          <option value="">Selecione o local primeiro…</option>
+        </select>
+      </div>
+
+      <div class="campo">
+        <label for="profissional">5. Profissional Prescrevente</label>
+        <select id="profissional" disabled>
+          <option value="">Selecione o laboratório primeiro…</option>
+        </select>
+      </div>
+
+      <div class="botoes">
+        <button type="button" class="primario" id="btnAdicionar" disabled>Adicionar à Prescrição</button>
+        <button type="button" class="secundario" id="btnLimparCampos">Limpar Campos</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Itens da Prescrição</h2>
+      <ul class="itens-prescricao" id="listaItens">
+        <li style="justify-content:center; color:#6b7a89;">Nenhum item adicionado ainda.</li>
+      </ul>
+      <div class="botoes">
+        <button type="button" class="perigo" id="btnLimparTudo">Limpar Prescrição</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Prescrição para Prontuário</h2>
+      <div class="campo">
+        <label for="textoFinal">Texto pronto para copiar e colar</label>
+        <textarea id="textoFinal" readonly></textarea>
+        <p class="ajuda">A formatação usa apenas quebras de linha e traços, compatível com qualquer campo de texto de prontuário.</p>
+      </div>
+      <div class="botoes">
+        <button type="button" class="primario" id="btnCopiar">Copiar Texto</button>
+        <span id="copiaStatus" class="ajuda"></span>
+      </div>
+    </section>
+
+    <p class="rodape-nota">Dados de medicamentos, doses, locais, laboratórios e profissionais são configuráveis em "Gerenciar Cadastros".</p>
+  </main>
+
+  <script src="js/data.js"></script>
+  <script src="js/prescricao.js"></script>
+</body>
+</html>

@@ -75,61 +75,51 @@
   "locais": [
     {
       "id": "id_mrdhiixb_jomqc3",
-      "medicamentoId": "id_mrdhiixb_nk6h3v",
       "viaId": "id_mrdhiixb_l5kedm",
       "nome": "Deltoide"
     },
     {
       "id": "id_mrdhiixb_rfxxu9",
-      "medicamentoId": "id_mrdhiixb_nk6h3v",
       "viaId": "id_mrdhiixb_l5kedm",
       "nome": "Ventroglúteo"
     },
     {
       "id": "id_mrdhiixb_o23kza",
-      "medicamentoId": "id_mrdhiixb_nk6h3v",
       "viaId": "id_mrdhiixb_l5kedm",
       "nome": "Dorsoglúteo"
     },
     {
       "id": "id_mrdhiixb_mz2gwp",
-      "medicamentoId": "id_mrdhiixb_nk6h3v",
       "viaId": "id_mrdhiixb_l5kedm",
       "nome": "Vasto Lateral da Coxa"
     },
     {
       "id": "id_mrdhiixb_4ruofm",
-      "medicamentoId": "id_mrdhiixb_nk6h3v",
       "viaId": "id_mrdhiixb_c4v9qg",
       "nome": "Abdômen"
     },
     {
       "id": "id_mrdhiixb_hzv0lf",
-      "medicamentoId": "id_mrdhiixb_nk6h3v",
       "viaId": "id_mrdhiixb_c4v9qg",
       "nome": "Face Externa do Braço"
     },
     {
       "id": "id_mrdhiixb_5cbceq",
-      "medicamentoId": "id_mrdhiixb_nk6h3v",
       "viaId": "id_mrdhiixb_c4v9qg",
       "nome": "Face Externa da Coxa"
     },
     {
       "id": "id_mrdhiixb_i7aifh",
-      "medicamentoId": "id_mrdhiixb_nk6h3v",
       "viaId": "id_mrdhiixb_093u3q",
       "nome": "Membro Superior"
     },
     {
       "id": "id_mrdhiixb_m9t9ly",
-      "medicamentoId": "id_mrdhiixb_5pjetd",
       "viaId": "id_mrdhiixb_vjssrw",
       "nome": "Via Oral"
     },
     {
       "id": "id_mrdhiixb_zgebm6",
-      "medicamentoId": "id_mrdhiixb_dpy6t1",
       "viaId": "id_mrdhiixb_wlh4yt",
       "nome": "Membro Superior"
     }

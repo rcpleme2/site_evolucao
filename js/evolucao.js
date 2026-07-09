@@ -130,19 +130,18 @@
   }
 
   function aoMudarVia() {
-    const medicamentoId = selMedicamento.value;
     const viaId = selVia.value;
     resetarSelect(selRegiao, 'Selecione o local primeiro…');
     resetarSelect(selLaboratorio, 'Selecione a região/lado primeiro…');
     resetarSelect(selProfissional, 'Selecione o laboratório primeiro…');
 
-    if (!viaId || !medicamentoId) {
+    if (!viaId) {
       resetarSelect(selLocal, 'Selecione a via primeiro…');
       atualizarBotaoAdicionar();
       return;
     }
 
-    const locais = db.getFiltrado('locais', { medicamentoId, viaId });
+    const locais = db.getFiltrado('locais', { viaId });
     popularEAvancar(
       selLocal,
       locais,

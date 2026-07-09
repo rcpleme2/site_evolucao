@@ -39,14 +39,25 @@
     {
       "id": "id_mrdqzro8_l1z458",
       "nome": "Complexo B sem B1"
+    },
+    {
+      "id": "id_mrdr6og0_13bf78",
+      "nome": "Nanomicelas de Resveratrol"
+    },
+    {
+      "id": "id_mrdr87e9_yapha0",
+      "nome": "L-Carnitina"
+    },
+    {
+      "id": "id_mrdrci65_gbel99",
+      "nome": "Coenzima Q10"
+    },
+    {
+      "id": "id_mrdrdtsj_dkzk8o",
+      "nome": "Kit Aumento de Massa"
     }
   ],
   "doses": [
-    {
-      "id": "id_mrdj4ikp_zagdv3",
-      "medicamentoId": "id_mrdj4edb_d1jgff",
-      "valor": "600.000 UI"
-    },
     {
       "id": "id_mrdlgkjq_l6liy1",
       "medicamentoId": "id_mrdlg093_yy5riz",
@@ -61,11 +72,6 @@
       "id": "id_mrdlinrm_9imzop",
       "medicamentoId": "id_mrdlil8f_8hkdgl",
       "valor": "(L-Metionina 25mg + L-Taurina 50mg + L-Prolina 10mg + Biotina 10mg + Vit B2 5mg + Vit B3 10mg + Vit B6 10mg + D-Pantenol 10mg)"
-    },
-    {
-      "id": "id_mrdljm8u_165f1l",
-      "medicamentoId": "id_mrdljg86_339m1r",
-      "valor": "300 mg"
     },
     {
       "id": "id_mrdlkx9b_k17o5s",
@@ -131,6 +137,66 @@
       "id": "id_mrdr05iu_urzy4n",
       "medicamentoId": "id_mrdqzro8_l1z458",
       "valor": "(RIBOFLAVINA 5MG/ML + NICOTINAMIDA 5MG/ML + PIRIDOXINA 5MG/ML + D-PANTENOL 25MG/ML) - 2ML"
+    },
+    {
+      "id": "id_mrdr43gh_gzch9r",
+      "medicamentoId": "id_mrdquwh3_jk2f6p",
+      "valor": "2,5 mg / 2 mL + Lidocaína 2% / 1 mL"
+    },
+    {
+      "id": "id_mrdr4pzd_1upmol",
+      "medicamentoId": "id_mrdljg86_339m1r",
+      "valor": "300 mg / 2 mL + Lidocaína 2% / 1 mL"
+    },
+    {
+      "id": "id_mrdr4w46_5lr3if",
+      "medicamentoId": "id_mrdljg86_339m1r",
+      "valor": "300 mg / 2 mL"
+    },
+    {
+      "id": "id_mrdr5d7i_bo5yc3",
+      "medicamentoId": "id_mrdj4edb_d1jgff",
+      "valor": "600.000 ui / 1 mL"
+    },
+    {
+      "id": "id_mrdr6buc_6gkz3a",
+      "medicamentoId": "id_mrdlg093_yy5riz",
+      "valor": "2500 mcg / 1 mL"
+    },
+    {
+      "id": "id_mrdr71ct_rf6rh8",
+      "medicamentoId": "id_mrdr6og0_13bf78",
+      "valor": "10 mg / 1 mL"
+    },
+    {
+      "id": "id_mrdr7plj_567nmv",
+      "medicamentoId": "id_mrdr6og0_13bf78",
+      "valor": "10 mg / 1 mL +  Lidocaína 2% / 1 mL"
+    },
+    {
+      "id": "id_mrdr8n4p_ytiq74",
+      "medicamentoId": "id_mrdr87e9_yapha0",
+      "valor": "600 mg / 2mL"
+    },
+    {
+      "id": "id_mrdrat5u_nwb8sr",
+      "medicamentoId": "id_mrdr87e9_yapha0",
+      "valor": "150mg - 50ui (0,5 mL)"
+    },
+    {
+      "id": "id_mrdrd8oe_wkrs81",
+      "medicamentoId": "id_mrdrci65_gbel99",
+      "valor": "100 mg / 2 mL"
+    },
+    {
+      "id": "id_mrdreu1p_o3kpmg",
+      "medicamentoId": "id_mrdrdtsj_dkzk8o",
+      "valor": "1x ALANIL GLUTAMINA 200 MG-2ML 1x BCAA (LEUCINA+ ISOLEUCINA+VALINA) 1x HMB 150MG-2ML 1x L-ARGININA 50% + LIDOC 1%-2ML"
+    },
+    {
+      "id": "id_mrdri1uv_xm56sk",
+      "medicamentoId": "id_mrdlil8f_8hkdgl",
+      "valor": "Plus (L-Metionina 25mg + L-Taurina 50mg + L-Prolina 10mg + Biotina 10mg + Vit. B2 5mg + Vit. B3 10mg + Vit. B6 10mg + D- Pante-nol 10mg + Silício 60mcg + Zinco 1mg + Selênio 10mcg) / 2 mL"
     }
   ],
   "vias": [
@@ -366,6 +432,41 @@
     {
       "id": "id_mrdr0qjd_2b1jwx",
       "medicamentoId": "id_mrdqzro8_l1z458",
+      "viaId": "id_mrdhiixb_l5kedm"
+    },
+    {
+      "id": "id_mrdr77dz_mvohqv",
+      "medicamentoId": "id_mrdr6og0_13bf78",
+      "viaId": "id_mrdhiixb_l5kedm"
+    },
+    {
+      "id": "id_mrdr78uq_j5laz5",
+      "medicamentoId": "id_mrdr6og0_13bf78",
+      "viaId": "id_mrdhiixb_093u3q"
+    },
+    {
+      "id": "id_mrdrb0e1_5e0m4u",
+      "medicamentoId": "id_mrdr87e9_yapha0",
+      "viaId": "id_mrdhiixb_l5kedm"
+    },
+    {
+      "id": "id_mrdrb1uc_h6312k",
+      "medicamentoId": "id_mrdr87e9_yapha0",
+      "viaId": "id_mrdhiixb_c4v9qg"
+    },
+    {
+      "id": "id_mrdrb38c_xmmwaq",
+      "medicamentoId": "id_mrdr87e9_yapha0",
+      "viaId": "id_mrdhiixb_093u3q"
+    },
+    {
+      "id": "id_mrdrdh5x_jcwcah",
+      "medicamentoId": "id_mrdrci65_gbel99",
+      "viaId": "id_mrdhiixb_l5kedm"
+    },
+    {
+      "id": "id_mrdrf17h_t5bvda",
+      "medicamentoId": "id_mrdrdtsj_dkzk8o",
       "viaId": "id_mrdhiixb_l5kedm"
     }
   ]

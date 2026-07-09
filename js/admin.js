@@ -1,7 +1,10 @@
 /**
- * Tela de administração: CRUD de medicamentos, doses, vias, locais,
- * regiões, laboratórios e profissionais, e vínculo de cada entidade
- * dependente à sua entidade "pai" (medicamento > via > local > região).
+ * Tela de administração: CRUD de medicamentos, doses, vias, vínculos
+ * medicamento-via, locais, regiões, laboratórios e profissionais.
+ *
+ * Vias são uma lista compartilhada (não pertencem a um medicamento);
+ * "medicamentoVias" define quais vias cada medicamento pode usar.
+ * Local depende só da via; região depende só do local.
  */
 (function () {
   const db = window.EvolucaoDB;
@@ -12,13 +15,15 @@
   const tabelaMedicamentos = document.getElementById('tabelaMedicamentos');
   const tabelaDoses = document.getElementById('tabelaDoses');
   const tabelaVias = document.getElementById('tabelaVias');
+  const tabelaMedicamentoVias = document.getElementById('tabelaMedicamentoVias');
   const tabelaLocais = document.getElementById('tabelaLocais');
   const tabelaRegioes = document.getElementById('tabelaRegioes');
   const tabelaLaboratorios = document.getElementById('tabelaLaboratorios');
   const tabelaProfissionais = document.getElementById('tabelaProfissionais');
 
   const doseMedicamento = document.getElementById('doseMedicamento');
-  const viaMedicamento = document.getElementById('viaMedicamento');
+  const mvMedicamento = document.getElementById('mvMedicamento');
+  const mvVia = document.getElementById('mvVia');
   const localVia = document.getElementById('localVia');
   const regiaoLocal = document.getElementById('regiaoLocal');
 
@@ -27,14 +32,14 @@
     return m ? m.nome : '(medicamento removido)';
   }
 
-  function rotuloVia(viaId) {
+  function nomeVia(viaId) {
     const v = db.getById('vias', viaId);
-    return v ? `${nomeMedicamento(v.medicamentoId)} — ${v.nome}` : '(via removida)';
+    return v ? v.nome : '(via removida)';
   }
 
   function rotuloLocal(localId) {
     const l = db.getById('locais', localId);
-    return l ? `${rotuloVia(l.viaId)} — ${l.nome}` : '(local removido)';
+    return l ? `${nomeVia(l.viaId)} — ${l.nome}` : '(local removido)';
   }
 
   function popularSelectMedicamentos(select) {
@@ -56,7 +61,7 @@
     db.getAll('vias').forEach((v) => {
       const opt = document.createElement('option');
       opt.value = v.id;
-      opt.textContent = rotuloVia(v.id);
+      opt.textContent = v.nome;
       select.appendChild(opt);
     });
     if (atual) select.value = atual;
@@ -105,7 +110,7 @@
       tabelaMedicamentos.appendChild(tr);
     });
     popularSelectMedicamentos(doseMedicamento);
-    popularSelectMedicamentos(viaMedicamento);
+    popularSelectMedicamentos(mvMedicamento);
   }
 
   function renderizarDoses() {
@@ -130,8 +135,6 @@
     tabelaVias.innerHTML = '';
     db.getAll('vias').forEach((item) => {
       const tr = document.createElement('tr');
-      const tdMed = document.createElement('td');
-      tdMed.textContent = nomeMedicamento(item.medicamentoId);
       const tdNome = document.createElement('td');
       tdNome.textContent = item.nome;
       const tdAcoes = document.createElement('td');
@@ -139,15 +142,34 @@
       tdAcoes.appendChild(
         criarBotaoExcluir('vias', item.id, () => {
           renderizarVias();
+          renderizarMedicamentoVias();
           renderizarLocais();
         })
       );
-      tr.appendChild(tdMed);
       tr.appendChild(tdNome);
       tr.appendChild(tdAcoes);
       tabelaVias.appendChild(tr);
     });
+    popularSelectTodasVias(mvVia);
     popularSelectTodasVias(localVia);
+  }
+
+  function renderizarMedicamentoVias() {
+    tabelaMedicamentoVias.innerHTML = '';
+    db.getAll('medicamentoVias').forEach((item) => {
+      const tr = document.createElement('tr');
+      const tdMed = document.createElement('td');
+      tdMed.textContent = nomeMedicamento(item.medicamentoId);
+      const tdVia = document.createElement('td');
+      tdVia.textContent = nomeVia(item.viaId);
+      const tdAcoes = document.createElement('td');
+      tdAcoes.className = 'acoes';
+      tdAcoes.appendChild(criarBotaoExcluir('medicamentoVias', item.id, renderizarMedicamentoVias));
+      tr.appendChild(tdMed);
+      tr.appendChild(tdVia);
+      tr.appendChild(tdAcoes);
+      tabelaMedicamentoVias.appendChild(tr);
+    });
   }
 
   function renderizarLocais() {
@@ -155,7 +177,7 @@
     db.getAll('locais').forEach((item) => {
       const tr = document.createElement('tr');
       const tdVia = document.createElement('td');
-      tdVia.textContent = rotuloVia(item.viaId);
+      tdVia.textContent = nomeVia(item.viaId);
       const tdNome = document.createElement('td');
       tdNome.textContent = item.nome;
       const tdAcoes = document.createElement('td');
@@ -230,6 +252,7 @@
     renderizarMedicamentos();
     renderizarDoses();
     renderizarVias();
+    renderizarMedicamentoVias();
     renderizarLocais();
     renderizarRegioes();
     renderizarLaboratorios();
@@ -256,13 +279,24 @@
   });
 
   document.getElementById('btnAddVia').addEventListener('click', () => {
-    const medicamentoId = viaMedicamento.value;
     const input = document.getElementById('novaViaNome');
     const nome = input.value.trim();
-    if (!medicamentoId || !nome) return;
-    db.create('vias', { medicamentoId, nome });
+    if (!nome) return;
+    db.create('vias', { nome });
     input.value = '';
     renderizarVias();
+  });
+
+  document.getElementById('btnAddMedicamentoVia').addEventListener('click', () => {
+    const medicamentoId = mvMedicamento.value;
+    const viaId = mvVia.value;
+    if (!medicamentoId || !viaId) return;
+    const jaExiste = db
+      .getFiltrado('medicamentoVias', { medicamentoId })
+      .some((mv) => mv.viaId === viaId);
+    if (jaExiste) return;
+    db.create('medicamentoVias', { medicamentoId, viaId });
+    renderizarMedicamentoVias();
   });
 
   document.getElementById('btnAddLocal').addEventListener('click', () => {

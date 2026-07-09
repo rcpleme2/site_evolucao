@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gerenciar Cadastros — Sistema de Evolução</title>
-  <link rel="stylesheet" href="css/style.css?v=2" />
+  <link rel="stylesheet" href="css/style.css?v=3" />
 </head>
 <body>
   <header class="topo">
@@ -15,9 +15,10 @@
   <main>
     <div class="aviso" id="avisoCarregamento">Carregando dados…</div>
     <div class="aviso" id="avisoInstrucao" style="display:none;">
-      Cadastre medicamentos e, em seguida, vincule doses e vias de administração a cada medicamento, locais de
-      aplicação a cada via, e regiões/lados a cada local. Laboratórios e profissionais são listas gerais,
-      independentes do medicamento.
+      Cadastre medicamentos e doses vinculadas a eles. Vias de administração (IM, EV, SC...) são uma lista geral,
+      compartilhada — vincule quais vias cada medicamento pode usar em "Vias por Medicamento". Locais de
+      aplicação dependem só da via, e regiões/lados dependem só do local. Laboratórios e profissionais são
+      listas gerais, independentes do medicamento.
     </div>
 
     <section class="card">
@@ -55,12 +56,9 @@
     </section>
 
     <section class="card">
-      <h2>Vias de Administração (vinculadas a um medicamento)</h2>
+      <h2>Vias de Administração (lista geral)</h2>
+      <p class="ajuda">Vias são compartilhadas entre medicamentos — cadastre "IM", "EV", "SC" etc. uma única vez.</p>
       <div class="linha-form">
-        <div class="campo">
-          <label for="viaMedicamento">Medicamento</label>
-          <select id="viaMedicamento"></select>
-        </div>
         <div class="campo">
           <label for="novaViaNome">Via de administração</label>
           <input type="text" id="novaViaNome" placeholder="Ex.: IM, EV, SC, VO" />
@@ -68,14 +66,34 @@
         <button type="button" class="primario" id="btnAddVia">Adicionar</button>
       </div>
       <table class="tabela-admin">
-        <thead><tr><th>Medicamento</th><th>Via</th><th>Ações</th></tr></thead>
+        <thead><tr><th>Via</th><th>Ações</th></tr></thead>
         <tbody id="tabelaVias"></tbody>
       </table>
     </section>
 
     <section class="card">
+      <h2>Vias por Medicamento</h2>
+      <p class="ajuda">Defina quais vias cada medicamento pode usar. Uma vez vinculada, a via (e seus locais) fica disponível para esse medicamento na tela de evolução.</p>
+      <div class="linha-form">
+        <div class="campo">
+          <label for="mvMedicamento">Medicamento</label>
+          <select id="mvMedicamento"></select>
+        </div>
+        <div class="campo">
+          <label for="mvVia">Via</label>
+          <select id="mvVia"></select>
+        </div>
+        <button type="button" class="primario" id="btnAddMedicamentoVia">Vincular</button>
+      </div>
+      <table class="tabela-admin">
+        <thead><tr><th>Medicamento</th><th>Via</th><th>Ações</th></tr></thead>
+        <tbody id="tabelaMedicamentoVias"></tbody>
+      </table>
+    </section>
+
+    <section class="card">
       <h2>Locais de Aplicação (vinculados apenas à via)</h2>
-      <p class="ajuda">O local depende só da via escolhida abaixo — não fica associado ao medicamento diretamente. A via já pertence a um medicamento específico (escolhido quando ela foi cadastrada), então o texto "Medicamento — Via" no select abaixo é só para ajudar a identificar qual via é qual.</p>
+      <p class="ajuda">O local depende só da via escolhida abaixo — vale para qualquer medicamento que use essa via.</p>
       <div class="linha-form">
         <div class="campo">
           <label for="localVia">Via de administração</label>
@@ -196,7 +214,7 @@
     </section>
   </main>
 
-  <script src="js/data.js?v=2"></script>
-  <script src="js/admin.js?v=2"></script>
+  <script src="js/data.js?v=3"></script>
+  <script src="js/admin.js?v=3"></script>
 </body>
 </html>

@@ -57,33 +57,19 @@
   "vias": [
     {
       "id": "id_mrdhiixb_l5kedm",
-      "medicamentoId": "id_mrdhiixb_nk6h3v",
       "nome": "IM"
     },
     {
       "id": "id_mrdhiixb_093u3q",
-      "medicamentoId": "id_mrdhiixb_nk6h3v",
       "nome": "EV"
     },
     {
       "id": "id_mrdhiixb_c4v9qg",
-      "medicamentoId": "id_mrdhiixb_nk6h3v",
       "nome": "SC"
     },
     {
       "id": "id_mrdhiixb_vjssrw",
-      "medicamentoId": "id_mrdhiixb_5pjetd",
       "nome": "VO"
-    },
-    {
-      "id": "id_mrdhiixb_wlh4yt",
-      "medicamentoId": "id_mrdhiixb_dpy6t1",
-      "nome": "EV"
-    },
-    {
-      "id": "id_mrdj4m4i_wqmgk3",
-      "medicamentoId": "id_mrdj4edb_d1jgff",
-      "nome": "IM"
     }
   ],
   "locais": [
@@ -131,16 +117,6 @@
       "id": "id_mrdhiixb_m9t9ly",
       "viaId": "id_mrdhiixb_vjssrw",
       "nome": "Via Oral"
-    },
-    {
-      "id": "id_mrdhiixb_zgebm6",
-      "viaId": "id_mrdhiixb_wlh4yt",
-      "nome": "Membro Superior"
-    },
-    {
-      "id": "id_mrdj57m4_apu5xa",
-      "viaId": "id_mrdj4m4i_wqmgk3",
-      "nome": "Deltoide"
     }
   ],
   "regioes": [
@@ -235,24 +211,9 @@
       "nome": "Esquerdo"
     },
     {
-      "id": "id_mrdhiixb_8vzx6j",
-      "localId": "id_mrdhiixb_zgebm6",
-      "nome": "Direito"
-    },
-    {
-      "id": "id_mrdhiixb_09cq64",
-      "localId": "id_mrdhiixb_zgebm6",
-      "nome": "Esquerdo"
-    },
-    {
       "id": "id_mrdhiixb_cns9po",
       "localId": "id_mrdhiixb_m9t9ly",
       "nome": "Não aplicável"
-    },
-    {
-      "id": "id_mrdj5ccx_qtob55",
-      "localId": "id_mrdj57m4_apu5xa",
-      "nome": "Direito"
     }
   ],
   "laboratorios": [
@@ -279,6 +240,38 @@
       "id": "id_mrdhiixb_dec9yd",
       "nome": "Eliane Carvalho - Técnica em Enfermagem",
       "registro": "COREN 1190230"
+    }
+  ],
+  "medicamentoVias": [
+    {
+      "id": "mv_id_mrdhiixb_l5kedm",
+      "medicamentoId": "id_mrdhiixb_nk6h3v",
+      "viaId": "id_mrdhiixb_l5kedm"
+    },
+    {
+      "id": "mv_id_mrdhiixb_093u3q",
+      "medicamentoId": "id_mrdhiixb_nk6h3v",
+      "viaId": "id_mrdhiixb_093u3q"
+    },
+    {
+      "id": "mv_id_mrdhiixb_c4v9qg",
+      "medicamentoId": "id_mrdhiixb_nk6h3v",
+      "viaId": "id_mrdhiixb_c4v9qg"
+    },
+    {
+      "id": "mv_id_mrdhiixb_vjssrw",
+      "medicamentoId": "id_mrdhiixb_5pjetd",
+      "viaId": "id_mrdhiixb_vjssrw"
+    },
+    {
+      "id": "mv_id_mrdhiixb_wlh4yt",
+      "medicamentoId": "id_mrdhiixb_dpy6t1",
+      "viaId": "id_mrdhiixb_093u3q"
+    },
+    {
+      "id": "mv_id_mrdj4m4i_wqmgk3",
+      "medicamentoId": "id_mrdj4edb_d1jgff",
+      "viaId": "id_mrdhiixb_l5kedm"
     }
   ]
 }

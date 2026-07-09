@@ -20,29 +20,29 @@
     const medParacetamol = uid();
     const medSoro = uid();
 
-    const viaDipironaIM = uid();
-    const viaDipironaEV = uid();
-    const viaDipironaSC = uid();
-    const viaParacetamolVO = uid();
-    const viaSoroEV = uid();
+    // Vias são uma lista compartilhada — o mesmo "IM" vale para qualquer
+    // medicamento que o utilize, junto com os mesmos locais de aplicação.
+    const viaIM = uid();
+    const viaEV = uid();
+    const viaSC = uid();
+    const viaVO = uid();
 
     // Locais IM: distantes de vasos/nervos calibrosos — todos bilaterais (Direito/Esquerdo)
-    const localDipironaDeltoide = uid();
-    const localDipironaVentroGluteo = uid();
-    const localDipironaDorsoGluteo = uid();
-    const localDipironaVastoLateral = uid();
+    const localDeltoide = uid();
+    const localVentroGluteo = uid();
+    const localDorsoGluteo = uid();
+    const localVastoLateral = uid();
 
     // Locais SC: abdômen usa rodízio por quadrante (sem lado), braço/coxa são bilaterais
-    const localDipironaAbdomen = uid();
-    const localDipironaFaceExternaBraco = uid();
-    const localDipironaFaceExternaCoxa = uid();
+    const localAbdomen = uid();
+    const localFaceExternaBraco = uid();
+    const localFaceExternaCoxa = uid();
 
     // EV: acesso venoso periférico em membro superior — bilateral
-    const localDipironaMembroSuperior = uid();
-    const localSoroMembroSuperior = uid();
+    const localMembroSuperior = uid();
 
     // VO: sem lado/região aplicável
-    const localParacetamolVO = uid();
+    const localViaOral = uid();
 
     const profA = uid();
     const profB = uid();
@@ -62,48 +62,52 @@
         { id: uid(), medicamentoId: medSoro, valor: '500ml' }
       ],
       vias: [
-        { id: viaDipironaIM, medicamentoId: medDipirona, nome: 'IM' },
-        { id: viaDipironaEV, medicamentoId: medDipirona, nome: 'EV' },
-        { id: viaDipironaSC, medicamentoId: medDipirona, nome: 'SC' },
-        { id: viaParacetamolVO, medicamentoId: medParacetamol, nome: 'VO' },
-        { id: viaSoroEV, medicamentoId: medSoro, nome: 'EV' }
+        { id: viaIM, nome: 'IM' },
+        { id: viaEV, nome: 'EV' },
+        { id: viaSC, nome: 'SC' },
+        { id: viaVO, nome: 'VO' }
+      ],
+      // Define quais vias cada medicamento pode usar (muitos-para-muitos).
+      medicamentoVias: [
+        { id: uid(), medicamentoId: medDipirona, viaId: viaIM },
+        { id: uid(), medicamentoId: medDipirona, viaId: viaEV },
+        { id: uid(), medicamentoId: medDipirona, viaId: viaSC },
+        { id: uid(), medicamentoId: medParacetamol, viaId: viaVO },
+        { id: uid(), medicamentoId: medSoro, viaId: viaEV }
       ],
       locais: [
-        { id: localDipironaDeltoide, viaId: viaDipironaIM, nome: 'Deltoide' },
-        { id: localDipironaVentroGluteo, viaId: viaDipironaIM, nome: 'Ventroglúteo' },
-        { id: localDipironaDorsoGluteo, viaId: viaDipironaIM, nome: 'Dorsoglúteo' },
-        { id: localDipironaVastoLateral, viaId: viaDipironaIM, nome: 'Vasto Lateral da Coxa' },
-        { id: localDipironaAbdomen, viaId: viaDipironaSC, nome: 'Abdômen' },
-        { id: localDipironaFaceExternaBraco, viaId: viaDipironaSC, nome: 'Face Externa do Braço' },
-        { id: localDipironaFaceExternaCoxa, viaId: viaDipironaSC, nome: 'Face Externa da Coxa' },
-        { id: localDipironaMembroSuperior, viaId: viaDipironaEV, nome: 'Membro Superior' },
-        { id: localParacetamolVO, viaId: viaParacetamolVO, nome: 'Via Oral' },
-        { id: localSoroMembroSuperior, viaId: viaSoroEV, nome: 'Membro Superior' }
+        { id: localDeltoide, viaId: viaIM, nome: 'Deltoide' },
+        { id: localVentroGluteo, viaId: viaIM, nome: 'Ventroglúteo' },
+        { id: localDorsoGluteo, viaId: viaIM, nome: 'Dorsoglúteo' },
+        { id: localVastoLateral, viaId: viaIM, nome: 'Vasto Lateral da Coxa' },
+        { id: localAbdomen, viaId: viaSC, nome: 'Abdômen' },
+        { id: localFaceExternaBraco, viaId: viaSC, nome: 'Face Externa do Braço' },
+        { id: localFaceExternaCoxa, viaId: viaSC, nome: 'Face Externa da Coxa' },
+        { id: localMembroSuperior, viaId: viaEV, nome: 'Membro Superior' },
+        { id: localViaOral, viaId: viaVO, nome: 'Via Oral' }
       ],
       regioes: [
-        { id: uid(), localId: localDipironaDeltoide, nome: 'Direito' },
-        { id: uid(), localId: localDipironaDeltoide, nome: 'Esquerdo' },
-        { id: uid(), localId: localDipironaVentroGluteo, nome: 'Direito' },
-        { id: uid(), localId: localDipironaVentroGluteo, nome: 'Esquerdo' },
-        { id: uid(), localId: localDipironaDorsoGluteo, nome: 'Direito' },
-        { id: uid(), localId: localDipironaDorsoGluteo, nome: 'Esquerdo' },
-        { id: uid(), localId: localDipironaVastoLateral, nome: 'Direito' },
-        { id: uid(), localId: localDipironaVastoLateral, nome: 'Esquerdo' },
+        { id: uid(), localId: localDeltoide, nome: 'Direito' },
+        { id: uid(), localId: localDeltoide, nome: 'Esquerdo' },
+        { id: uid(), localId: localVentroGluteo, nome: 'Direito' },
+        { id: uid(), localId: localVentroGluteo, nome: 'Esquerdo' },
+        { id: uid(), localId: localDorsoGluteo, nome: 'Direito' },
+        { id: uid(), localId: localDorsoGluteo, nome: 'Esquerdo' },
+        { id: uid(), localId: localVastoLateral, nome: 'Direito' },
+        { id: uid(), localId: localVastoLateral, nome: 'Esquerdo' },
         // Abdômen: rodízio por quadrante horário ao redor da cicatriz umbilical — não tem "lado"
-        { id: uid(), localId: localDipironaAbdomen, nome: '3h' },
-        { id: uid(), localId: localDipironaAbdomen, nome: '6h' },
-        { id: uid(), localId: localDipironaAbdomen, nome: '9h' },
-        { id: uid(), localId: localDipironaAbdomen, nome: '12h' },
-        { id: uid(), localId: localDipironaFaceExternaBraco, nome: 'Direito' },
-        { id: uid(), localId: localDipironaFaceExternaBraco, nome: 'Esquerdo' },
-        { id: uid(), localId: localDipironaFaceExternaCoxa, nome: 'Direito' },
-        { id: uid(), localId: localDipironaFaceExternaCoxa, nome: 'Esquerdo' },
-        { id: uid(), localId: localDipironaMembroSuperior, nome: 'Direito' },
-        { id: uid(), localId: localDipironaMembroSuperior, nome: 'Esquerdo' },
-        { id: uid(), localId: localSoroMembroSuperior, nome: 'Direito' },
-        { id: uid(), localId: localSoroMembroSuperior, nome: 'Esquerdo' },
+        { id: uid(), localId: localAbdomen, nome: '3h' },
+        { id: uid(), localId: localAbdomen, nome: '6h' },
+        { id: uid(), localId: localAbdomen, nome: '9h' },
+        { id: uid(), localId: localAbdomen, nome: '12h' },
+        { id: uid(), localId: localFaceExternaBraco, nome: 'Direito' },
+        { id: uid(), localId: localFaceExternaBraco, nome: 'Esquerdo' },
+        { id: uid(), localId: localFaceExternaCoxa, nome: 'Direito' },
+        { id: uid(), localId: localFaceExternaCoxa, nome: 'Esquerdo' },
+        { id: uid(), localId: localMembroSuperior, nome: 'Direito' },
+        { id: uid(), localId: localMembroSuperior, nome: 'Esquerdo' },
         // Via Oral: não há lado/região a escolher
-        { id: uid(), localId: localParacetamolVO, nome: 'Não aplicável' }
+        { id: uid(), localId: localViaOral, nome: 'Não aplicável' }
       ],
       laboratorios: [
         { id: uid(), nome: 'Essentia Pharma' },

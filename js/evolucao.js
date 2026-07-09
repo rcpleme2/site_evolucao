@@ -136,7 +136,10 @@
       return;
     }
 
-    const vias = db.getFiltrado('vias', { medicamentoId });
+    const vias = db
+      .getFiltrado('medicamentoVias', { medicamentoId })
+      .map((vinculo) => db.getById('vias', vinculo.viaId))
+      .filter(Boolean);
     popularEAvancar(
       selVia,
       vias,

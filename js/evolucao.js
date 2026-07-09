@@ -3,6 +3,10 @@
  * Cada campo depende do valor escolhido no(s) campo(s) anterior(es).
  * Quando um campo tem apenas uma opção disponível, ela é selecionada
  * automaticamente e o campo seguinte já é aberto, sem exigir clique.
+ *
+ * O profissional responsável e a marcação de intercorrências valem
+ * para toda a evolução (não por item), por isso ficam fora da cascata
+ * de campos do item e são lidos direto na hora de montar o texto final.
  */
 (function () {
   const db = window.EvolucaoDB;
@@ -16,7 +20,6 @@
   const selLocal = document.getElementById('local');
   const selRegiao = document.getElementById('regiao');
   const selLaboratorio = document.getElementById('laboratorio');
-  const selProfissional = document.getElementById('profissional');
   const btnAdicionar = document.getElementById('btnAdicionar');
   const btnLimparCampos = document.getElementById('btnLimparCampos');
   const btnLimparTudo = document.getElementById('btnLimparTudo');
@@ -25,7 +28,13 @@
   const btnCopiar = document.getElementById('btnCopiar');
   const copiaStatus = document.getElementById('copiaStatus');
 
+  const selProfissional = document.getElementById('profissional');
+  const btnIntercorrenciaNao = document.getElementById('btnIntercorrenciaNao');
+  const btnIntercorrenciaSim = document.getElementById('btnIntercorrenciaSim');
+  const campoIntercorrencia = document.getElementById('campoIntercorrencia');
+
   let itensEvolucao = [];
+  let houveIntercorrencia = false;
 
   /**
    * Popula um select. Se houver exatamente uma opção, ela é selecionada
@@ -76,13 +85,25 @@
     );
   }
 
+  function carregarProfissionais() {
+    const profissionais = db.getAll('profissionais');
+    popularEAvancar(
+      selProfissional,
+      profissionais,
+      'Selecione o profissional…',
+      'Nenhum profissional cadastrado',
+      (p) => p.id,
+      (p) => p.nome,
+      renderizarTextoFinal
+    );
+  }
+
   function aoMudarMedicamento() {
     const medicamentoId = selMedicamento.value;
     resetarSelect(selVia, 'Selecione a dose primeiro…');
     resetarSelect(selLocal, 'Selecione a via primeiro…');
     resetarSelect(selRegiao, 'Selecione o local primeiro…');
     resetarSelect(selLaboratorio, 'Selecione a região/lado primeiro…');
-    resetarSelect(selProfissional, 'Selecione o laboratório primeiro…');
 
     if (!medicamentoId) {
       resetarSelect(selDose, 'Selecione o medicamento primeiro…');
@@ -108,7 +129,6 @@
     resetarSelect(selLocal, 'Selecione a via primeiro…');
     resetarSelect(selRegiao, 'Selecione o local primeiro…');
     resetarSelect(selLaboratorio, 'Selecione a região/lado primeiro…');
-    resetarSelect(selProfissional, 'Selecione o laboratório primeiro…');
 
     if (!selDose.value || !medicamentoId) {
       resetarSelect(selVia, 'Selecione a dose primeiro…');
@@ -133,7 +153,6 @@
     const viaId = selVia.value;
     resetarSelect(selRegiao, 'Selecione o local primeiro…');
     resetarSelect(selLaboratorio, 'Selecione a região/lado primeiro…');
-    resetarSelect(selProfissional, 'Selecione o laboratório primeiro…');
 
     if (!viaId) {
       resetarSelect(selLocal, 'Selecione a via primeiro…');
@@ -157,7 +176,6 @@
   function aoMudarLocal() {
     const localId = selLocal.value;
     resetarSelect(selLaboratorio, 'Selecione a região/lado primeiro…');
-    resetarSelect(selProfissional, 'Selecione o laboratório primeiro…');
 
     if (!localId) {
       resetarSelect(selRegiao, 'Selecione o local primeiro…');
@@ -179,8 +197,6 @@
   }
 
   function aoMudarRegiao() {
-    resetarSelect(selProfissional, 'Selecione o laboratório primeiro…');
-
     if (!selRegiao.value) {
       resetarSelect(selLaboratorio, 'Selecione a região/lado primeiro…');
       atualizarBotaoAdicionar();
@@ -195,26 +211,6 @@
       'Nenhum laboratório cadastrado',
       (l) => l.id,
       (l) => l.nome,
-      aoMudarLaboratorio
-    );
-    atualizarBotaoAdicionar();
-  }
-
-  function aoMudarLaboratorio() {
-    if (!selLaboratorio.value) {
-      resetarSelect(selProfissional, 'Selecione o laboratório primeiro…');
-      atualizarBotaoAdicionar();
-      return;
-    }
-
-    const profissionais = db.getAll('profissionais');
-    popularEAvancar(
-      selProfissional,
-      profissionais,
-      'Selecione o profissional…',
-      'Nenhum profissional cadastrado',
-      (p) => p.id,
-      (p) => p.nome,
       atualizarBotaoAdicionar
     );
     atualizarBotaoAdicionar();
@@ -227,8 +223,7 @@
       selVia.value &&
       selLocal.value &&
       selRegiao.value &&
-      selLaboratorio.value &&
-      selProfissional.value;
+      selLaboratorio.value;
     btnAdicionar.disabled = !completo;
   }
 
@@ -244,11 +239,10 @@
     const local = db.getById('locais', selLocal.value);
     const regiao = db.getById('regioes', selRegiao.value);
     const laboratorio = db.getById('laboratorios', selLaboratorio.value);
-    const profissional = db.getById('profissionais', selProfissional.value);
 
-    if (!medicamento || !dose || !via || !local || !regiao || !laboratorio || !profissional) return;
+    if (!medicamento || !dose || !via || !local || !regiao || !laboratorio) return;
 
-    itensEvolucao.push({ medicamento, dose, via, local, regiao, laboratorio, profissional });
+    itensEvolucao.push({ medicamento, dose, via, local, regiao, laboratorio });
     renderizarItens();
     renderizarTextoFinal();
     limparCampos();
@@ -290,13 +284,26 @@
     return data.toLocaleDateString('pt-BR');
   }
 
+  function definirIntercorrencia(houve) {
+    houveIntercorrencia = houve;
+    btnIntercorrenciaNao.classList.toggle('ativo', !houve);
+    btnIntercorrenciaSim.classList.toggle('ativo', houve);
+    campoIntercorrencia.style.display = houve ? '' : 'none';
+    renderizarTextoFinal();
+  }
+
+  function linhaIntercorrencia() {
+    if (!houveIntercorrencia) return 'Sem intercorrências';
+    return `Intercorrências: ${campoIntercorrencia.value.trim()}`;
+  }
+
   function renderizarTextoFinal() {
     if (itensEvolucao.length === 0) {
       textoFinal.value = '';
       return;
     }
 
-    const profissional = itensEvolucao[itensEvolucao.length - 1].profissional;
+    const profissional = db.getById('profissionais', selProfissional.value);
     const linhas = [];
     linhas.push(`EVOLUÇÃO DE ENFERMAGEM — ${formatarData(new Date())}`);
     linhas.push('');
@@ -304,7 +311,11 @@
       linhas.push(`${indice + 1}. ${fraseEvolucao(item)}`);
     });
     linhas.push('');
-    linhas.push(`${profissional.nome} - ${profissional.registro}`);
+    linhas.push(linhaIntercorrencia());
+    linhas.push('');
+    if (profissional) {
+      linhas.push(`${profissional.nome} - ${profissional.registro}`);
+    }
 
     textoFinal.value = linhas.join('\n');
   }
@@ -330,8 +341,8 @@
   selVia.addEventListener('change', aoMudarVia);
   selLocal.addEventListener('change', aoMudarLocal);
   selRegiao.addEventListener('change', aoMudarRegiao);
-  selLaboratorio.addEventListener('change', aoMudarLaboratorio);
-  selProfissional.addEventListener('change', atualizarBotaoAdicionar);
+  selLaboratorio.addEventListener('change', atualizarBotaoAdicionar);
+  selProfissional.addEventListener('change', renderizarTextoFinal);
 
   btnAdicionar.addEventListener('click', adicionarItem);
   btnLimparCampos.addEventListener('click', limparCampos);
@@ -342,12 +353,15 @@
   });
   btnCopiar.addEventListener('click', copiarTexto);
 
+  btnIntercorrenciaNao.addEventListener('click', () => definirIntercorrencia(false));
+  btnIntercorrenciaSim.addEventListener('click', () => definirIntercorrencia(true));
+  campoIntercorrencia.addEventListener('input', renderizarTextoFinal);
+
   resetarSelect(selDose, 'Selecione o medicamento primeiro…');
   resetarSelect(selVia, 'Selecione a dose primeiro…');
   resetarSelect(selLocal, 'Selecione a via primeiro…');
   resetarSelect(selRegiao, 'Selecione o local primeiro…');
   resetarSelect(selLaboratorio, 'Selecione a região/lado primeiro…');
-  resetarSelect(selProfissional, 'Selecione o laboratório primeiro…');
   renderizarItens();
   renderizarTextoFinal();
 
@@ -362,6 +376,7 @@
       avisoInstrucao.style.display = '';
     }
     carregarMedicamentos();
+    carregarProfissionais();
   }
 
   iniciar();

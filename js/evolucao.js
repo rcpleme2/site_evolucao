@@ -326,13 +326,37 @@
     textoFinal.value = linhas.join('\n');
   }
 
+  function escaparHtml(texto) {
+    const div = document.createElement('div');
+    div.textContent = texto;
+    return div.innerHTML;
+  }
+
+  /**
+   * Alguns campos de prontuário são baseados em HTML e "engolem" quebras de
+   * linha simples ao colar. Por isso copiamos duas versões: texto puro (com
+   * \r\n, mais compatível com editores tradicionais) e HTML com <br> entre
+   * as linhas — o destino escolhe automaticamente a que ele aceitar melhor.
+   */
   async function copiarTexto() {
     if (!textoFinal.value) {
       copiaStatus.textContent = 'Nada para copiar ainda.';
       return;
     }
+
+    const textoPlano = textoFinal.value.replace(/\n/g, '\r\n');
+
     try {
-      await navigator.clipboard.writeText(textoFinal.value);
+      if (navigator.clipboard.write && window.ClipboardItem) {
+        const linhasHtml = textoFinal.value.split('\n').map(escaparHtml).join('<br>');
+        const itemClipboard = new ClipboardItem({
+          'text/plain': new Blob([textoPlano], { type: 'text/plain' }),
+          'text/html': new Blob([`<div>${linhasHtml}</div>`], { type: 'text/html' })
+        });
+        await navigator.clipboard.write([itemClipboard]);
+      } else {
+        await navigator.clipboard.writeText(textoPlano);
+      }
       copiaStatus.textContent = 'Copiado!';
     } catch (e) {
       textoFinal.select();

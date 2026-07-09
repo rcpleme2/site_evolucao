@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sistema de Prescrições — Enfermagem</title>
+  <title>Sistema de Evolução — Enfermagem</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
   <header class="topo">
-    <h1>Sistema de Prescrições de Enfermagem</h1>
+    <h1>Sistema de Evolução de Enfermagem</h1>
     <nav><a href="admin.html">Gerenciar Cadastros</a></nav>
   </header>
 
@@ -18,7 +18,7 @@
     </div>
 
     <section class="card">
-      <h2>Novo Item da Prescrição</h2>
+      <h2>Novo Item da Evolução</h2>
 
       <div class="campo">
         <label for="medicamento">1. Medicamento</label>
@@ -70,23 +70,23 @@
       </div>
 
       <div class="botoes">
-        <button type="button" class="primario" id="btnAdicionar" disabled>Adicionar à Prescrição</button>
+        <button type="button" class="primario" id="btnAdicionar" disabled>Adicionar à Evolução</button>
         <button type="button" class="secundario" id="btnLimparCampos">Limpar Campos</button>
       </div>
     </section>
 
     <section class="card">
-      <h2>Itens da Prescrição</h2>
+      <h2>Itens da Evolução</h2>
       <ul class="itens-prescricao" id="listaItens">
         <li style="justify-content:center; color:#6b7a89;">Nenhum item adicionado ainda.</li>
       </ul>
       <div class="botoes">
-        <button type="button" class="perigo" id="btnLimparTudo">Limpar Prescrição</button>
+        <button type="button" class="perigo" id="btnLimparTudo">Limpar Evolução</button>
       </div>
     </section>
 
     <section class="card">
-      <h2>Prescrição para Prontuário</h2>
+      <h2>Evolução para Prontuário</h2>
       <div class="campo">
         <label for="textoFinal">Texto pronto para copiar e colar</label>
         <textarea id="textoFinal" readonly></textarea>

@@ -1,6 +1,8 @@
 /**
- * Lógica do formulário progressivo de prescrição.
+ * Lógica do formulário progressivo de evolução de enfermagem.
  * Cada campo depende do valor escolhido no(s) campo(s) anterior(es).
+ * Quando um campo tem apenas uma opção disponível, ela é selecionada
+ * automaticamente e o campo seguinte já é aberto, sem exigir clique.
  */
 (function () {
   const db = window.PrescricaoDB;
@@ -21,9 +23,20 @@
   const btnCopiar = document.getElementById('btnCopiar');
   const copiaStatus = document.getElementById('copiaStatus');
 
-  let itensPrescricao = [];
+  let itensEvolucao = [];
 
-  function popularSelect(select, opcoes, labelPadrao, valorFn, textoFn) {
+  /**
+   * Popula um select. Se houver exatamente uma opção, ela é selecionada
+   * automaticamente e `aoAvancar` é chamado para abrir o campo seguinte,
+   * simulando a escolha do usuário.
+   */
+  function popularEAvancar(select, opcoes, labelPadrao, mensagemVazio, valorFn, textoFn, aoAvancar) {
+    if (opcoes.length === 0) {
+      select.innerHTML = `<option value="">${mensagemVazio}</option>`;
+      select.disabled = true;
+      return;
+    }
+
     select.innerHTML = '';
     const optPadrao = document.createElement('option');
     optPadrao.value = '';
@@ -35,6 +48,12 @@
       opt.textContent = textoFn(item);
       select.appendChild(opt);
     });
+    select.disabled = false;
+
+    if (opcoes.length === 1) {
+      select.value = valorFn(opcoes[0]);
+      if (aoAvancar) aoAvancar();
+    }
   }
 
   function resetarSelect(select, texto) {
@@ -44,35 +63,42 @@
 
   function carregarMedicamentos() {
     const medicamentos = db.getAll('medicamentos');
-    popularSelect(
+    popularEAvancar(
       selMedicamento,
       medicamentos,
       'Selecione o medicamento…',
+      'Nenhum medicamento cadastrado',
       (m) => m.id,
-      (m) => m.nome
+      (m) => m.nome,
+      aoMudarMedicamento
     );
   }
 
   function aoMudarMedicamento() {
     const medicamentoId = selMedicamento.value;
+    resetarSelect(selVia, 'Selecione a dose primeiro…');
     resetarSelect(selLocal, 'Selecione a via primeiro…');
     resetarSelect(selRegiao, 'Selecione o local primeiro…');
     resetarSelect(selLaboratorio, 'Selecione a região/lado primeiro…');
     resetarSelect(selProfissional, 'Selecione o laboratório primeiro…');
-    atualizarBotaoAdicionar();
 
     if (!medicamentoId) {
       resetarSelect(selDose, 'Selecione o medicamento primeiro…');
-      resetarSelect(selVia, 'Selecione a dose primeiro…');
+      atualizarBotaoAdicionar();
       return;
     }
 
     const doses = db.getFiltrado('doses', { medicamentoId });
-    popularSelect(selDose, doses, 'Selecione a dose…', (d) => d.id, (d) => d.valor);
-    selDose.disabled = doses.length === 0;
-    if (doses.length === 0) selDose.innerHTML = '<option value="">Nenhuma dose cadastrada para este medicamento</option>';
-
-    resetarSelect(selVia, 'Selecione a dose primeiro…');
+    popularEAvancar(
+      selDose,
+      doses,
+      'Selecione a dose…',
+      'Nenhuma dose cadastrada para este medicamento',
+      (d) => d.id,
+      (d) => d.valor,
+      aoMudarDose
+    );
+    atualizarBotaoAdicionar();
   }
 
   function aoMudarDose() {
@@ -81,17 +107,24 @@
     resetarSelect(selRegiao, 'Selecione o local primeiro…');
     resetarSelect(selLaboratorio, 'Selecione a região/lado primeiro…');
     resetarSelect(selProfissional, 'Selecione o laboratório primeiro…');
-    atualizarBotaoAdicionar();
 
     if (!selDose.value || !medicamentoId) {
       resetarSelect(selVia, 'Selecione a dose primeiro…');
+      atualizarBotaoAdicionar();
       return;
     }
 
     const vias = db.getFiltrado('vias', { medicamentoId });
-    popularSelect(selVia, vias, 'Selecione a via de administração…', (v) => v.id, (v) => v.nome);
-    selVia.disabled = vias.length === 0;
-    if (vias.length === 0) selVia.innerHTML = '<option value="">Nenhuma via cadastrada para este medicamento</option>';
+    popularEAvancar(
+      selVia,
+      vias,
+      'Selecione a via de administração…',
+      'Nenhuma via cadastrada para este medicamento',
+      (v) => v.id,
+      (v) => v.nome,
+      aoMudarVia
+    );
+    atualizarBotaoAdicionar();
   }
 
   function aoMudarVia() {
@@ -100,62 +133,90 @@
     resetarSelect(selRegiao, 'Selecione o local primeiro…');
     resetarSelect(selLaboratorio, 'Selecione a região/lado primeiro…');
     resetarSelect(selProfissional, 'Selecione o laboratório primeiro…');
-    atualizarBotaoAdicionar();
 
     if (!viaId || !medicamentoId) {
       resetarSelect(selLocal, 'Selecione a via primeiro…');
+      atualizarBotaoAdicionar();
       return;
     }
 
     const locais = db.getFiltrado('locais', { medicamentoId, viaId });
-    popularSelect(selLocal, locais, 'Selecione o local de aplicação…', (l) => l.id, (l) => l.nome);
-    selLocal.disabled = locais.length === 0;
-    if (locais.length === 0) selLocal.innerHTML = '<option value="">Nenhum local cadastrado para esta via</option>';
+    popularEAvancar(
+      selLocal,
+      locais,
+      'Selecione o local de aplicação…',
+      'Nenhum local cadastrado para esta via',
+      (l) => l.id,
+      (l) => l.nome,
+      aoMudarLocal
+    );
+    atualizarBotaoAdicionar();
   }
 
   function aoMudarLocal() {
     const localId = selLocal.value;
     resetarSelect(selLaboratorio, 'Selecione a região/lado primeiro…');
     resetarSelect(selProfissional, 'Selecione o laboratório primeiro…');
-    atualizarBotaoAdicionar();
 
     if (!localId) {
       resetarSelect(selRegiao, 'Selecione o local primeiro…');
+      atualizarBotaoAdicionar();
       return;
     }
 
     const regioes = db.getFiltrado('regioes', { localId });
-    popularSelect(selRegiao, regioes, 'Selecione a região/lado…', (r) => r.id, (r) => r.nome);
-    selRegiao.disabled = regioes.length === 0;
-    if (regioes.length === 0) selRegiao.innerHTML = '<option value="">Nenhuma região cadastrada para este local</option>';
+    popularEAvancar(
+      selRegiao,
+      regioes,
+      'Selecione a região/lado…',
+      'Nenhuma região cadastrada para este local',
+      (r) => r.id,
+      (r) => r.nome,
+      aoMudarRegiao
+    );
+    atualizarBotaoAdicionar();
   }
 
   function aoMudarRegiao() {
-    atualizarBotaoAdicionar();
+    resetarSelect(selProfissional, 'Selecione o laboratório primeiro…');
 
     if (!selRegiao.value) {
       resetarSelect(selLaboratorio, 'Selecione a região/lado primeiro…');
+      atualizarBotaoAdicionar();
       return;
     }
 
     const laboratorios = db.getAll('laboratorios');
-    popularSelect(selLaboratorio, laboratorios, 'Selecione o laboratório…', (l) => l.id, (l) => l.nome);
-    selLaboratorio.disabled = laboratorios.length === 0;
-    if (laboratorios.length === 0) selLaboratorio.innerHTML = '<option value="">Nenhum laboratório cadastrado</option>';
+    popularEAvancar(
+      selLaboratorio,
+      laboratorios,
+      'Selecione o laboratório…',
+      'Nenhum laboratório cadastrado',
+      (l) => l.id,
+      (l) => l.nome,
+      aoMudarLaboratorio
+    );
+    atualizarBotaoAdicionar();
   }
 
   function aoMudarLaboratorio() {
-    atualizarBotaoAdicionar();
-
     if (!selLaboratorio.value) {
       resetarSelect(selProfissional, 'Selecione o laboratório primeiro…');
+      atualizarBotaoAdicionar();
       return;
     }
 
     const profissionais = db.getAll('profissionais');
-    popularSelect(selProfissional, profissionais, 'Selecione o profissional…', (p) => p.id, (p) => p.nome);
-    selProfissional.disabled = profissionais.length === 0;
-    if (profissionais.length === 0) selProfissional.innerHTML = '<option value="">Nenhum profissional cadastrado</option>';
+    popularEAvancar(
+      selProfissional,
+      profissionais,
+      'Selecione o profissional…',
+      'Nenhum profissional cadastrado',
+      (p) => p.id,
+      (p) => p.nome,
+      atualizarBotaoAdicionar
+    );
+    atualizarBotaoAdicionar();
   }
 
   function atualizarBotaoAdicionar() {
@@ -186,33 +247,33 @@
 
     if (!medicamento || !dose || !via || !local || !regiao || !laboratorio || !profissional) return;
 
-    itensPrescricao.push({ medicamento, dose, via, local, regiao, laboratorio, profissional });
+    itensEvolucao.push({ medicamento, dose, via, local, regiao, laboratorio, profissional });
     renderizarItens();
     renderizarTextoFinal();
     limparCampos();
   }
 
   function removerItem(indice) {
-    itensPrescricao.splice(indice, 1);
+    itensEvolucao.splice(indice, 1);
     renderizarItens();
     renderizarTextoFinal();
   }
 
-  function frasePrescricao(item) {
+  function fraseEvolucao(item) {
     const regiaoTexto = item.regiao.nome === 'Não aplicável' ? '' : ` ${item.regiao.nome}`;
     return `Realizada aplicação via ${item.via.nome} de ${item.medicamento.nome} ${item.dose.valor} em ${item.local.nome}${regiaoTexto} - Laboratório ${item.laboratorio.nome}`;
   }
 
   function renderizarItens() {
     listaItens.innerHTML = '';
-    if (itensPrescricao.length === 0) {
+    if (itensEvolucao.length === 0) {
       listaItens.innerHTML = '<li style="justify-content:center; color:#6b7a89;">Nenhum item adicionado ainda.</li>';
       return;
     }
-    itensPrescricao.forEach((item, indice) => {
+    itensEvolucao.forEach((item, indice) => {
       const li = document.createElement('li');
       const texto = document.createElement('span');
-      texto.textContent = frasePrescricao(item);
+      texto.textContent = fraseEvolucao(item);
       const btnRemover = document.createElement('button');
       btnRemover.type = 'button';
       btnRemover.className = 'perigo';
@@ -229,17 +290,17 @@
   }
 
   function renderizarTextoFinal() {
-    if (itensPrescricao.length === 0) {
+    if (itensEvolucao.length === 0) {
       textoFinal.value = '';
       return;
     }
 
-    const profissional = itensPrescricao[itensPrescricao.length - 1].profissional;
+    const profissional = itensEvolucao[itensEvolucao.length - 1].profissional;
     const linhas = [];
-    linhas.push(`PRESCRIÇÃO DE ENFERMAGEM — ${formatarData(new Date())}`);
+    linhas.push(`EVOLUÇÃO DE ENFERMAGEM — ${formatarData(new Date())}`);
     linhas.push('');
-    itensPrescricao.forEach((item, indice) => {
-      linhas.push(`${indice + 1}. ${frasePrescricao(item)}`);
+    itensEvolucao.forEach((item, indice) => {
+      linhas.push(`${indice + 1}. ${fraseEvolucao(item)}`);
     });
     linhas.push('');
     linhas.push(`${profissional.nome} - ${profissional.registro}`);
@@ -274,19 +335,19 @@
   btnAdicionar.addEventListener('click', adicionarItem);
   btnLimparCampos.addEventListener('click', limparCampos);
   btnLimparTudo.addEventListener('click', () => {
-    itensPrescricao = [];
+    itensEvolucao = [];
     renderizarItens();
     renderizarTextoFinal();
   });
   btnCopiar.addEventListener('click', copiarTexto);
 
-  carregarMedicamentos();
   resetarSelect(selDose, 'Selecione o medicamento primeiro…');
   resetarSelect(selVia, 'Selecione a dose primeiro…');
   resetarSelect(selLocal, 'Selecione a via primeiro…');
   resetarSelect(selRegiao, 'Selecione o local primeiro…');
   resetarSelect(selLaboratorio, 'Selecione a região/lado primeiro…');
   resetarSelect(selProfissional, 'Selecione o laboratório primeiro…');
+  carregarMedicamentos();
   renderizarItens();
   renderizarTextoFinal();
 })();

@@ -63,13 +63,6 @@
         </select>
       </div>
 
-      <div class="campo">
-        <label for="profissional">7. Profissional Responsável</label>
-        <select id="profissional" disabled>
-          <option value="">Selecione o laboratório primeiro…</option>
-        </select>
-      </div>
-
       <div class="botoes">
         <button type="button" class="primario" id="btnAdicionar" disabled>Adicionar à Evolução</button>
         <button type="button" class="secundario" id="btnLimparCampos">Limpar Campos</button>
@@ -81,6 +74,23 @@
       <ul class="itens-evolucao" id="listaItens">
         <li style="justify-content:center; color:#6b7a89;">Nenhum item adicionado ainda.</li>
       </ul>
+
+      <div class="campo">
+        <label for="profissional">Profissional Responsável</label>
+        <select id="profissional" disabled>
+          <option value="">Carregando…</option>
+        </select>
+      </div>
+
+      <div class="campo">
+        <label>Houve intercorrências?</label>
+        <div class="botoes">
+          <button type="button" class="secundario ativo" id="btnIntercorrenciaNao">Não</button>
+          <button type="button" class="secundario" id="btnIntercorrenciaSim">Sim</button>
+        </div>
+        <textarea id="campoIntercorrencia" style="display:none; margin-top:0.6rem;" placeholder="Descreva a intercorrência…"></textarea>
+      </div>
+
       <div class="botoes">
         <button type="button" class="perigo" id="btnLimparTudo">Limpar Evolução</button>
       </div>

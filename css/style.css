@@ -155,6 +155,16 @@ button.secundario:hover {
   background: var(--cinza-claro);
 }
 
+button.secundario.ativo {
+  background: var(--azul-medio);
+  border-color: var(--azul-medio);
+  color: var(--branco);
+}
+
+button.secundario.ativo:hover {
+  background: var(--azul-escuro);
+}
+
 button.perigo {
   background: var(--branco);
   border-color: var(--perigo);

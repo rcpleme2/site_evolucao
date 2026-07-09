@@ -170,21 +170,24 @@
     );
   }
 
+  /**
+   * Ordena uma lista alfabeticamente (pt-BR) por um campo (string) ou por
+   * uma função que extrai a chave de ordenação de cada item — útil para
+   * ordenar por um valor composto, como "nome do medicamento + nome da via".
+   */
+  function ordenarPor(lista, chave) {
+    const obterChave = typeof chave === 'function' ? chave : (item) => item[chave];
+    return [...lista].sort((a, b) =>
+      String(obterChave(a)).localeCompare(String(obterChave(b)), 'pt-BR', { sensitivity: 'base' })
+    );
+  }
+
   function create(entidade, dados) {
     const db = garantirDb();
     if (!db[entidade]) db[entidade] = [];
     const registro = Object.assign({ id: uid() }, dados);
     db[entidade].push(registro);
     return registro;
-  }
-
-  function update(entidade, id, dados) {
-    const db = garantirDb();
-    const lista = db[entidade] || [];
-    const idx = lista.findIndex((item) => item.id === id);
-    if (idx === -1) return null;
-    lista[idx] = Object.assign({}, lista[idx], dados, { id });
-    return lista[idx];
   }
 
   function remove(entidade, id) {
@@ -272,8 +275,8 @@
     getAll,
     getById,
     getFiltrado,
+    ordenarPor,
     create,
-    update,
     remove,
     resetParaPlaceholders,
     exportarJson,

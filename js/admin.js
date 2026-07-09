@@ -43,7 +43,7 @@
   }
 
   function popularSelectMedicamentos(select) {
-    const medicamentos = db.getAll('medicamentos');
+    const medicamentos = db.ordenarPor(db.getAll('medicamentos'), 'nome');
     const atual = select.value;
     select.innerHTML = '';
     medicamentos.forEach((m) => {
@@ -58,7 +58,7 @@
   function popularSelectTodasVias(select) {
     const atual = select.value;
     select.innerHTML = '';
-    db.getAll('vias').forEach((v) => {
+    db.ordenarPor(db.getAll('vias'), 'nome').forEach((v) => {
       const opt = document.createElement('option');
       opt.value = v.id;
       opt.textContent = v.nome;
@@ -70,7 +70,7 @@
   function popularSelectLocaisParaRegiao(select) {
     const atual = select.value;
     select.innerHTML = '';
-    db.getAll('locais').forEach((l) => {
+    db.ordenarPor(db.getAll('locais'), (l) => rotuloLocal(l.id)).forEach((l) => {
       const opt = document.createElement('option');
       opt.value = l.id;
       opt.textContent = rotuloLocal(l.id);
@@ -94,7 +94,7 @@
 
   function renderizarMedicamentos() {
     tabelaMedicamentos.innerHTML = '';
-    db.getAll('medicamentos').forEach((m) => {
+    db.ordenarPor(db.getAll('medicamentos'), 'nome').forEach((m) => {
       const tr = document.createElement('tr');
       const tdNome = document.createElement('td');
       tdNome.textContent = m.nome;
@@ -115,7 +115,7 @@
 
   function renderizarDoses() {
     tabelaDoses.innerHTML = '';
-    db.getAll('doses').forEach((item) => {
+    db.ordenarPor(db.getAll('doses'), (d) => `${nomeMedicamento(d.medicamentoId)} ${d.valor}`).forEach((item) => {
       const tr = document.createElement('tr');
       const tdMed = document.createElement('td');
       tdMed.textContent = nomeMedicamento(item.medicamentoId);
@@ -133,7 +133,7 @@
 
   function renderizarVias() {
     tabelaVias.innerHTML = '';
-    db.getAll('vias').forEach((item) => {
+    db.ordenarPor(db.getAll('vias'), 'nome').forEach((item) => {
       const tr = document.createElement('tr');
       const tdNome = document.createElement('td');
       tdNome.textContent = item.nome;
@@ -156,7 +156,10 @@
 
   function renderizarMedicamentoVias() {
     tabelaMedicamentoVias.innerHTML = '';
-    db.getAll('medicamentoVias').forEach((item) => {
+    db.ordenarPor(
+      db.getAll('medicamentoVias'),
+      (mv) => `${nomeMedicamento(mv.medicamentoId)} ${nomeVia(mv.viaId)}`
+    ).forEach((item) => {
       const tr = document.createElement('tr');
       const tdMed = document.createElement('td');
       tdMed.textContent = nomeMedicamento(item.medicamentoId);
@@ -174,7 +177,7 @@
 
   function renderizarLocais() {
     tabelaLocais.innerHTML = '';
-    db.getAll('locais').forEach((item) => {
+    db.ordenarPor(db.getAll('locais'), (l) => `${nomeVia(l.viaId)} ${l.nome}`).forEach((item) => {
       const tr = document.createElement('tr');
       const tdVia = document.createElement('td');
       tdVia.textContent = nomeVia(item.viaId);
@@ -199,7 +202,7 @@
 
   function renderizarRegioes() {
     tabelaRegioes.innerHTML = '';
-    db.getAll('regioes').forEach((item) => {
+    db.ordenarPor(db.getAll('regioes'), (r) => `${rotuloLocal(r.localId)} ${r.nome}`).forEach((item) => {
       const tr = document.createElement('tr');
       const tdLocal = document.createElement('td');
       tdLocal.textContent = rotuloLocal(item.localId);
@@ -217,7 +220,7 @@
 
   function renderizarLaboratorios() {
     tabelaLaboratorios.innerHTML = '';
-    db.getAll('laboratorios').forEach((item) => {
+    db.ordenarPor(db.getAll('laboratorios'), 'nome').forEach((item) => {
       const tr = document.createElement('tr');
       const tdNome = document.createElement('td');
       tdNome.textContent = item.nome;
@@ -232,7 +235,7 @@
 
   function renderizarProfissionais() {
     tabelaProfissionais.innerHTML = '';
-    db.getAll('profissionais').forEach((p) => {
+    db.ordenarPor(db.getAll('profissionais'), 'nome').forEach((p) => {
       const tr = document.createElement('tr');
       const tdNome = document.createElement('td');
       tdNome.textContent = p.nome;

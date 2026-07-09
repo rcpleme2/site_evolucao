@@ -73,7 +73,7 @@
   }
 
   function carregarMedicamentos() {
-    const medicamentos = db.getAll('medicamentos');
+    const medicamentos = db.ordenarPor(db.getAll('medicamentos'), 'nome');
     popularEAvancar(
       selMedicamento,
       medicamentos,
@@ -86,7 +86,7 @@
   }
 
   function carregarProfissionais() {
-    const profissionais = db.getAll('profissionais');
+    const profissionais = db.ordenarPor(db.getAll('profissionais'), 'nome');
     popularEAvancar(
       selProfissional,
       profissionais,
@@ -111,7 +111,7 @@
       return;
     }
 
-    const doses = db.getFiltrado('doses', { medicamentoId });
+    const doses = db.ordenarPor(db.getFiltrado('doses', { medicamentoId }), 'valor');
     popularEAvancar(
       selDose,
       doses,
@@ -136,10 +136,13 @@
       return;
     }
 
-    const vias = db
-      .getFiltrado('medicamentoVias', { medicamentoId })
-      .map((vinculo) => db.getById('vias', vinculo.viaId))
-      .filter(Boolean);
+    const vias = db.ordenarPor(
+      db
+        .getFiltrado('medicamentoVias', { medicamentoId })
+        .map((vinculo) => db.getById('vias', vinculo.viaId))
+        .filter(Boolean),
+      'nome'
+    );
     popularEAvancar(
       selVia,
       vias,
@@ -163,7 +166,7 @@
       return;
     }
 
-    const locais = db.getFiltrado('locais', { viaId });
+    const locais = db.ordenarPor(db.getFiltrado('locais', { viaId }), 'nome');
     popularEAvancar(
       selLocal,
       locais,
@@ -186,7 +189,7 @@
       return;
     }
 
-    const regioes = db.getFiltrado('regioes', { localId });
+    const regioes = db.ordenarPor(db.getFiltrado('regioes', { localId }), 'nome');
     popularEAvancar(
       selRegiao,
       regioes,
@@ -206,7 +209,7 @@
       return;
     }
 
-    const laboratorios = db.getAll('laboratorios');
+    const laboratorios = db.ordenarPor(db.getAll('laboratorios'), 'nome');
     popularEAvancar(
       selLaboratorio,
       laboratorios,

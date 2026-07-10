@@ -55,6 +55,10 @@
     {
       "id": "id_mrdrdtsj_dkzk8o",
       "nome": "Kit Aumento de Massa"
+    },
+    {
+      "id": "id_mrfelqmw_fc49ke",
+      "nome": "AumentoMassaII"
     }
   ],
   "doses": [
@@ -192,6 +196,11 @@
       "id": "id_mrdsxl7f_l8nfzm",
       "medicamentoId": "id_mrdlg093_yy5riz",
       "valor": "2500 mcg / 1 mL + Vitamina B9 (Metilfolato) 2,5 mg / 2mL"
+    },
+    {
+      "id": "id_mrfem93r_cima3d",
+      "medicamentoId": "id_mrfelqmw_fc49ke",
+      "valor": "BCAA (L-Leucina 46mg + Isoleucina 23mg + L-Valina 31mg) / 4mL + Alanil Glutamina 200mg / 2mL + HMB 150mg / 2mL + L-Arginina 50% + Lidocaína 1% / 2mL"
     }
   ],
   "vias": [
@@ -462,6 +471,11 @@
     {
       "id": "id_mrdsn3w5_k4kblh",
       "medicamentoId": "id_mrdlil8f_8hkdgl",
+      "viaId": "id_mrdhiixb_l5kedm"
+    },
+    {
+      "id": "id_mrfenhl4_kmm5ju",
+      "medicamentoId": "id_mrfelqmw_fc49ke",
       "viaId": "id_mrdhiixb_l5kedm"
     }
   ]

@@ -59,6 +59,22 @@
     {
       "id": "id_mrfelqmw_fc49ke",
       "nome": "AumentoMassaII"
+    },
+    {
+      "id": "id_mrowxhtq_lc3yql",
+      "nome": "Ativador Metabólico"
+    },
+    {
+      "id": "id_mrox6ylp_imot71",
+      "nome": "Emagrecimento"
+    },
+    {
+      "id": "id_mroxfh5t_62x5mw",
+      "nome": "Hipertrofia + Emagrecimento"
+    },
+    {
+      "id": "id_mroxjcg4_az8inq",
+      "nome": "Performance Esportiva"
     }
   ],
   "doses": [
@@ -201,6 +217,26 @@
       "id": "id_mrfem93r_cima3d",
       "medicamentoId": "id_mrfelqmw_fc49ke",
       "valor": "BCAA (L-Leucina 46mg + Isoleucina 23mg + L-Valina 31mg) / 4mL + Alanil Glutamina 200mg / 2mL + HMB 150mg / 2mL + L-Arginina 50% + Lidocaína 1% / 2mL"
+    },
+    {
+      "id": "id_mrox7p06_lczx5e",
+      "medicamentoId": "id_mrox6ylp_imot71",
+      "valor": "Citrus sinensis L. Osbeck Moro 20mg/1mL + Hidroxitriptofano 4mg/2mL + SAC (Siloxanetriol Alginato de Cafeína)  20mg/2mL + L-Carnitina 600mg/2mL + Picolinato de Cromo 100mcg/2mL + Lidocaína HCl 20mg/1mL"
+    },
+    {
+      "id": "id_mroxgco2_ksprmf",
+      "medicamentoId": "id_mroxfh5t_62x5mw",
+      "valor": "BCAA /2mL (Leucina 24mg + Isoleucina 10mg + Valina 10mg) + L-Carnitina 600mg/2mL + (L-Arginina 400mg + Lidocaína 20mg)/2mL + L-Ornitina 300mg/2mL + Picolinato de Cromo 100mcg/2mL"
+    },
+    {
+      "id": "id_mroxjutp_4z46h9",
+      "medicamentoId": "id_mroxjcg4_az8inq",
+      "valor": "Beta alanina 750mg/2ml + D-ribose 500mg/2ml + L-carnitina 600mg/2ml + L-carnosina 500mg/2ml + Lidocaina 20mg/1ml"
+    },
+    {
+      "id": "id_mroy3ea1_2b502z",
+      "medicamentoId": "id_mrowxhtq_lc3yql",
+      "valor": "L-Carnitina 600mg/2mL + Cloreto de Cromo 100mcg/2mL + L-Theanina 50mg/2mL + Hidroxitriptofano 4mg/2mL + Lidocaína HCl 20mg/1mL"
     }
   ],
   "vias": [
@@ -476,6 +512,26 @@
     {
       "id": "id_mrfenhl4_kmm5ju",
       "medicamentoId": "id_mrfelqmw_fc49ke",
+      "viaId": "id_mrdhiixb_l5kedm"
+    },
+    {
+      "id": "id_mrox7vuh_lmzl6d",
+      "medicamentoId": "id_mrox6ylp_imot71",
+      "viaId": "id_mrdhiixb_l5kedm"
+    },
+    {
+      "id": "id_mroxghv3_h0cd1i",
+      "medicamentoId": "id_mroxfh5t_62x5mw",
+      "viaId": "id_mrdhiixb_l5kedm"
+    },
+    {
+      "id": "id_mroxjyji_zf8ezw",
+      "medicamentoId": "id_mroxjcg4_az8inq",
+      "viaId": "id_mrdhiixb_l5kedm"
+    },
+    {
+      "id": "id_mroy3i5u_lc8zvb",
+      "medicamentoId": "id_mrowxhtq_lc3yql",
       "viaId": "id_mrdhiixb_l5kedm"
     }
   ]

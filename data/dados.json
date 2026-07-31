@@ -79,6 +79,10 @@
     {
       "id": "id_ms96q564_f209sg",
       "nome": "Recovery Muscular"
+    },
+    {
+      "id": "id_ms96s0pl_e1ku8k",
+      "nome": "Protocolo adjuvante para Saúde da Pele, do Cabelo e das Unhas"
     }
   ],
   "doses": [
@@ -246,6 +250,11 @@
       "id": "id_ms96q8yo_44nojd",
       "medicamentoId": "id_ms96q564_f209sg",
       "valor": "(L-Leucina 50mg + L-Isoleucina 50mg + L-Valina 50mg + L-Ornitina 80mg + Alanil Glutamina 250mg + L-Taurina 75mg + L-Citrulina 75mg + N-Acetil Cisteína 200mg + L-Glicina 50mg + Ac. L-Aspártico 10mg + L-Lisina 50mg + L-Prolina 100mg)/10 mL"
+    },
+    {
+      "id": "id_ms96v4xh_8n0u8p",
+      "medicamentoId": "id_ms96s0pl_e1ku8k",
+      "valor": "Minerais /2mL (Cloreto de Cromo 200mcg +Sulfato de Manganês 250mcg + Sulfato de Magnésio 500mg + Sulfato de Zinco 25mg + Selênio 50mcg + Sulfato de Cobre 0,7mg) +\tVit B5 (D-Pantenol) 40mg/2mL + Complexo B – sem B1 /2mL (B2 10mg + B3 10mg + B5 50mg + B6 10mg) + L-Metionina 100mg/2mL + NAC 300mg/2mL + MSM 750mg/5mL + Aminoácidos (3,8%) /10mL (Glicina 74mg + Ácido Aspártico 9mg + L-Ornitina HCl 30mg + L-Lisina HCl 31mg + L-Prolina 90mg + Serina 12mg + L-Metionina 46mg + L-Arginina HCl 80mg + L-Triptofano 9mg)"
     }
   ],
   "vias": [
@@ -521,6 +530,11 @@
     {
       "id": "id_ms96qead_cga2h6",
       "medicamentoId": "id_ms96q564_f209sg",
+      "viaId": "id_mrdhiixb_093u3q"
+    },
+    {
+      "id": "id_ms96v8zs_8n53pd",
+      "medicamentoId": "id_ms96s0pl_e1ku8k",
       "viaId": "id_mrdhiixb_093u3q"
     }
   ]

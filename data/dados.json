@@ -550,6 +550,11 @@
       "id": "id_ms973n8w_5s9jzs",
       "medicamentoId": "id_ms973a9p_tqiagp",
       "viaId": "id_mrdhiixb_l5kedm"
+    },
+    {
+      "id": "id_msj7gd9l_w7ftkj",
+      "medicamentoId": "id_mrdqxsw1_6uhjnn",
+      "viaId": "id_mrdhiixb_l5kedm"
     }
   ]
 }

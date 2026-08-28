@@ -87,6 +87,10 @@
     {
       "id": "id_ms973a9p_tqiagp",
       "nome": "HMB - Hidroximetilbutirato de cálcio"
+    },
+    {
+      "id": "id_mtcvw15c_jas6uz",
+      "nome": "Hipertrofia"
     }
   ],
   "doses": [
@@ -264,6 +268,11 @@
       "id": "id_ms973hf5_dnd3t0",
       "medicamentoId": "id_ms973a9p_tqiagp",
       "valor": "(2,5%) 50mg/2mL"
+    },
+    {
+      "id": "id_mtcvx6jk_9g2hbx",
+      "medicamentoId": "id_mtcvw15c_jas6uz",
+      "valor": "L-Glutathion 100mg/2mL + HMB 50mg/2mL + BCAA /2mL (Leucina 24mg + Isoleucina 10mg + Valina 10mg) + L-Ornitina 300mg/2mL + Lidocaína 20mg/1mL"
     }
   ],
   "vias": [
@@ -554,6 +563,11 @@
     {
       "id": "id_msj7gd9l_w7ftkj",
       "medicamentoId": "id_mrdqxsw1_6uhjnn",
+      "viaId": "id_mrdhiixb_l5kedm"
+    },
+    {
+      "id": "id_mtcvxej3_49uiih",
+      "medicamentoId": "id_mtcvw15c_jas6uz",
       "viaId": "id_mrdhiixb_l5kedm"
     }
   ]

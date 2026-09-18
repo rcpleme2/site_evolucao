@@ -95,6 +95,10 @@
     {
       "id": "id_mu7776if_paq758",
       "nome": "Noripurum"
+    },
+    {
+      "id": "id_mu78wh0g_xdfyge",
+      "nome": "Ferinject"
     }
   ],
   "doses": [
@@ -282,6 +286,11 @@
       "id": "id_mu77b751_ydeyiw",
       "medicamentoId": "id_mu7776if_paq758",
       "valor": "Noripurum 100mg/5ml> Sacarato de óxido férrico"
+    },
+    {
+      "id": "id_mu78yo23_n1hn2w",
+      "medicamentoId": "id_mu78wh0g_xdfyge",
+      "valor": "Ferrinject 50ml/ml> Carboximaltose férrica 10ml"
     }
   ],
   "vias": [
@@ -586,6 +595,11 @@
     {
       "id": "id_mu77e4qz_soqer7",
       "medicamentoId": "id_mu7776if_paq758",
+      "viaId": "id_mrdhiixb_093u3q"
+    },
+    {
+      "id": "id_mu78zcvn_lpjj13",
+      "medicamentoId": "id_mu78wh0g_xdfyge",
       "viaId": "id_mrdhiixb_093u3q"
     }
   ]

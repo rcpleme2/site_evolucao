@@ -91,6 +91,10 @@
     {
       "id": "id_mtcvw15c_jas6uz",
       "nome": "Hipertrofia"
+    },
+    {
+      "id": "id_mu7776if_paq758",
+      "nome": "Noripurum"
     }
   ],
   "doses": [
@@ -273,6 +277,11 @@
       "id": "id_mtcvx6jk_9g2hbx",
       "medicamentoId": "id_mtcvw15c_jas6uz",
       "valor": "L-Glutathion 100mg/2mL + HMB 50mg/2mL + BCAA /2mL (Leucina 24mg + Isoleucina 10mg + Valina 10mg) + L-Ornitina 300mg/2mL + Lidocaína 20mg/1mL"
+    },
+    {
+      "id": "id_mu77b751_ydeyiw",
+      "medicamentoId": "id_mu7776if_paq758",
+      "valor": "Noripurum 100mg/5ml> Sacarato de óxido férrico"
     }
   ],
   "vias": [
@@ -405,6 +414,10 @@
     {
       "id": "id_mrdhiixb_a2pgf1",
       "nome": "Health Tech"
+    },
+    {
+      "id": "id_mu781npb_mxhs6d",
+      "nome": "Blanver"
     }
   ],
   "profissionais": [
@@ -569,6 +582,11 @@
       "id": "id_mtcvxej3_49uiih",
       "medicamentoId": "id_mtcvw15c_jas6uz",
       "viaId": "id_mrdhiixb_l5kedm"
+    },
+    {
+      "id": "id_mu77e4qz_soqer7",
+      "medicamentoId": "id_mu7776if_paq758",
+      "viaId": "id_mrdhiixb_093u3q"
     }
   ]
 }
